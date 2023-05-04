@@ -5,13 +5,13 @@ apply plugin: "com.ibotta.gradle.aop"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
-
 }
 
 android {
     namespace 'me.jdvp.androidaspectexample'
+    ndkVersion "25.2.9519653"
     defaultConfig {
         applicationId "me.jdvp.androidaspectexample"
         minSdkVersion 23
@@ -34,8 +34,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     /*
