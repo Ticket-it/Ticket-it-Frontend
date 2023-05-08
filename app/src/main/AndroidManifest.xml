@@ -29,7 +29,40 @@
 
         </activity>
         <activity
+
+            android:name=".activity.agent.AgentEventDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Login"
+            android:exported="false" />
+        <activity
+            android:name=".activity.agent.AgentEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.agent.AgentHome"
+            android:exported="false" />
+        <activity
+            android:name=".activity.admin.AdminEventDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.admin.AdminEventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.admin.AdminHome"
+            android:exported="false"
+            android:label="@string/title_activity_admin_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.user.EventDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.user.EventsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.user.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
