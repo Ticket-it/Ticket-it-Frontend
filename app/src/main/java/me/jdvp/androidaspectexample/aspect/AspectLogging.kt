@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import me.jdvp.androidaspectexample.R
 import me.jdvp.androidaspectexample.activity.account.Login
+import me.jdvp.androidaspectexample.activity.account.Register
 import me.jdvp.androidaspectexample.utility.Logger
 import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.Aspect
@@ -73,6 +74,18 @@ class AspectLogging {
         val emailEditText = (joinPoint.target as Login).findViewById<EditText>(R.id.email_tv)
         val email = emailEditText.text.toString()
         Logger.logItem("System Logging -> Email: $email is trying to Log in")
+    }
+
+    @Pointcut("execution(void *signUp(..))")
+    fun onClicksignupPointcut() {
+
+    }
+
+    @Before("onClicksignupPointcut()")
+    fun captureNewUserDetails(joinPoint: JoinPoint) {
+        val emailEditText = (joinPoint.target as Register).findViewById<EditText>(R.id.email_tv)
+        val email = emailEditText.text.toString()
+        Logger.logItem("System Logging -> Email: $email is trying to sign up")
     }
 
 }
