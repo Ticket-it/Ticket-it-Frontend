@@ -3,7 +3,10 @@
 package me.jdvp.androidaspectexample.aspect
 
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
+import me.jdvp.androidaspectexample.R
+import me.jdvp.androidaspectexample.activity.account.Login
 import me.jdvp.androidaspectexample.utility.Logger
 import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.Aspect
@@ -20,7 +23,7 @@ class AspectLogging {
      * Indicates that the execution of the onCreate method with a single Bundle argument is
      * called from any class in my Activity package
      */
-    @Pointcut("execution(* me.jdvp.*.activity.*.onCreate(android.os.Bundle))")
+    @Pointcut("execution(* me.jdvp.*.activity.*.*.onCreate(android.os.Bundle))")
     fun onCreate() {
     }
 
@@ -32,7 +35,7 @@ class AspectLogging {
     @Before("onCreate()")
     fun onCreateAdvice(joinPoint: JoinPoint?) {
         if (joinPoint?.getThis() != null) {
-            Logger.logItem("onCreate called in " + joinPoint.getThis().javaClass.simpleName)
+            Logger.logItem("System Logging -> onCreate called in " + joinPoint.getThis().javaClass.simpleName)
         }
     }
 
@@ -50,8 +53,26 @@ class AspectLogging {
      */
     @Before("onButtonClick() && args(view)")
     fun onClickAdvice(view: View?) {
-        if (view is TextView) {
-            Logger.logItem("${view.text} clicked")
+        val activityName = view?.context?.javaClass?.simpleName
+        val buttonName = if (view is TextView) view.text else view?.javaClass?.simpleName
+
+        if (activityName != null && buttonName != null) {
+            val logMessage = "System Logging -> Button $buttonName is clicked in activity $activityName"
+            Logger.logItem(logMessage)
         }
+
     }
+
+    @Pointcut("execution(void *signIn(..))")
+    fun onClickLoginPointcut() {
+
+    }
+
+    @Before("onClickLoginPointcut()")
+    fun captureCredentialsBeforeLogin(joinPoint: JoinPoint) {
+        val emailEditText = (joinPoint.target as Login).findViewById<EditText>(R.id.email_tv)
+        val email = emailEditText.text.toString()
+        Logger.logItem("System Logging -> Email: $email is trying to Log in")
+    }
+
 }

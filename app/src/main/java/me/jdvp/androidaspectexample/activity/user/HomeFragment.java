@@ -26,6 +26,7 @@ public class HomeFragment extends Fragment {
     RecyclerView eventTypeRecyclerView;
     EventTypeAdapter eventTypeAdapter;
     ArrayList<EventTypeModel> eventTypes;
+    private TextView user_tv;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -33,9 +34,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        TextView user_name_textView = view.findViewById(R.id.user_name);
-        String user_name = "Mostafa"; // fetched username
-        user_name_textView.setText("Hi, "+ user_name);
+        user_tv=view.findViewById(R.id.user_name);
+        String name = getActivity().getIntent().getStringExtra("name"); // Replace "name" with the same key used in the sending activity
+        if (name != null) {
+            user_tv.setText("Hi, "+ name);
+
+        }
 
         ArrayList<EventModel> events = new ArrayList<>();
         events.add(new EventModel("Amr Diab’s New Year", "Family Park, Fifth Settlement", "@drawable/event_img", 750, "Amr Diab is one of the most eminent Arabic pop stars in the Arabic world and a Guinness World Record Holder, Best Selling Middle Eastern Artist, 7 times winner of World Music Awards, 5 Platinum Record Awards & 6 African Music Awards.", "28/05/2023", "07:30 PM", "Cairo, Egypt"));

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.BookedSuccessfully"
+    tools:context=".activity.user.BookedSuccessfully"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@android:color/white">

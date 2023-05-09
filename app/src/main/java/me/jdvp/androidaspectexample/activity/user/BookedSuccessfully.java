@@ -1,4 +1,4 @@
-package me.jdvp.androidaspectexample.activity;
+package me.jdvp.androidaspectexample.activity.user;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
