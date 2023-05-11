@@ -21,8 +21,7 @@ import org.aspectj.lang.annotation.Pointcut
 @Aspect
 class AspectLogging {
     /**
-     * Indicates that the execution of the onCreate method with a single Bundle argument is
-     * called from any class in my Activity package
+     * Triggers when any onCreate function is present, which will actually trigger on each activity start
      */
     @Pointcut("execution(* me.jdvp.*.activity.*.*.onCreate(android.os.Bundle))")
     fun onCreate() {
@@ -30,8 +29,6 @@ class AspectLogging {
 
     /**
      * Runs the code in this method before the onCreate method gets called.
-     *
-     * Note that the value in the annotation is the same as the pointcut in this file that I want to use
      */
     @Before("onCreate()")
     fun onCreateAdvice(joinPoint: JoinPoint?) {
@@ -48,9 +45,7 @@ class AspectLogging {
     }
 
     /**
-     * Runs the code in this method before the onCreate method gets called.
-     *
-     * The value in the annotation mentions both the pointcut to use and the argument that I want to capture.
+     * This is advice code for any function onclick
      */
     @Before("onButtonClick() && args(view)")
     fun onClickAdvice(view: View?) {
@@ -64,11 +59,17 @@ class AspectLogging {
 
     }
 
+    /**
+     * This is triggered when sign in function is called, which is in page login
+     */
     @Pointcut("execution(void *signIn(..))")
     fun onClickLoginPointcut() {
 
     }
 
+    /**
+     * This is the advice code
+     */
     @Before("onClickLoginPointcut()")
     fun captureCredentialsBeforeLogin(joinPoint: JoinPoint) {
         val emailEditText = (joinPoint.target as Login).findViewById<EditText>(R.id.email_tv)
@@ -76,11 +77,17 @@ class AspectLogging {
         Logger.logItem("System Logging -> Email: $email is trying to Log in")
     }
 
+    /**
+     * This is triggered when sign up function is called, which is in page register
+     */
     @Pointcut("execution(void *signUp(..))")
     fun onClicksignupPointcut() {
 
     }
 
+    /**
+     * This is the advice code
+     */
     @Before("onClicksignupPointcut()")
     fun captureNewUserDetails(joinPoint: JoinPoint) {
         val emailEditText = (joinPoint.target as Register).findViewById<EditText>(R.id.email_tv)

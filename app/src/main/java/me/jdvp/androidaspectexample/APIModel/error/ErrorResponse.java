@@ -1,4 +1,4 @@
-package me.jdvp.androidaspectexample.model.error;
+package me.jdvp.androidaspectexample.APIModel.error;
 
 public class ErrorResponse {
     private int status;

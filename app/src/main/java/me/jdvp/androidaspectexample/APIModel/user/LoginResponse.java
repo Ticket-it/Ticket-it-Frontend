@@ -1,4 +1,4 @@
-package me.jdvp.androidaspectexample.model.user;
+package me.jdvp.androidaspectexample.APIModel.user;
 
 public class LoginResponse {
     private String message;

@@ -17,9 +17,9 @@ import java.io.IOException;
 import me.jdvp.androidaspectexample.Interface.LoginService;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.config.ApiUrls;
-import me.jdvp.androidaspectexample.model.error.ErrorResponse;
-import me.jdvp.androidaspectexample.model.user.CreateUserRequest;
-import me.jdvp.androidaspectexample.model.user.CreateUserResponse;
+import me.jdvp.androidaspectexample.APIModel.error.ErrorResponse;
+import me.jdvp.androidaspectexample.APIModel.user.CreateUserRequest;
+import me.jdvp.androidaspectexample.APIModel.user.CreateUserResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Register extends AppCompatActivity {
 
+    /**
+     * Here are private attributes to be used later
+     */
     private TextView full_name_tv;
     private TextView mobile_tv;
     private TextView email_tv;
@@ -35,13 +38,15 @@ public class Register extends AppCompatActivity {
     private TextView confirm_password_tv;
     private Button sign_in_btn;
     private TextView sign_up_btn;
-    Retrofit retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        /**
+         * Map view to the activity
+         */
         full_name_tv = findViewById(R.id.full_name_tv);
         mobile_tv = findViewById(R.id.mobile_tv);
         email_tv = findViewById(R.id.email_tv);
@@ -50,12 +55,18 @@ public class Register extends AppCompatActivity {
         sign_in_btn = findViewById(R.id.sign_in_btn);
         sign_up_btn = findViewById(R.id.sign_up_tv);
 
+        /**
+         * Define retrofit to make GET/POST messages
+         */
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiUrls.LOGIN_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         LoginService loginService = retrofit.create(LoginService.class);
 
+        /**
+         * Triggers when user clicks sign in
+         */
         sign_up_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,16 +76,25 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        /**
+         * Triggers when user clicks sign up
+         */
         sign_in_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                /**
+                 * Get values from view
+                 */
                 String fullName = full_name_tv.getText().toString();
                 String email = email_tv.getText().toString();
                 String mobileNo = mobile_tv.getText().toString();
                 String password = password_tv.getText().toString();
                 String confirmPassword = confirm_password_tv.getText().toString();
 
+                /**
+                 * Validation
+                 */
                 if (fullName.equals("") || mobileNo.equals("") || email.equals("") || confirmPassword.equals("") || password.equals("")) {
                     Toast.makeText(Register.this, "Please enter the full details", Toast.LENGTH_LONG).show();
                     return;
@@ -85,11 +105,18 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
+                /**
+                 * Send POST request
+                 */
                 CreateUserRequest createUserRequest = new CreateUserRequest(email, password, fullName, mobileNo);
                 Call<CreateUserResponse> call = loginService.createUser(createUserRequest);
                 call.enqueue(new Callback<CreateUserResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<CreateUserResponse> call, Response<CreateUserResponse> response) {
+
+                        /**
+                         * If status 200 is received
+                         */
                         if (response.isSuccessful()) {
                             // Handle successful response here
                             CreateUserResponse responseData = response.body();
@@ -100,6 +127,9 @@ public class Register extends AppCompatActivity {
                                 finish();
                             }
                         } else {
+                            /**
+                             * If status is > 200
+                             */
                             if (response.errorBody() != null) {
                                 try {
                                     String errorResponse = response.errorBody().string();
@@ -113,6 +143,9 @@ public class Register extends AppCompatActivity {
                         }
                     }
 
+                    /**
+                     * If request failed
+                     */
                     @Override
                     public void onFailure(Call<CreateUserResponse> call, Throwable t) {
                         Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
