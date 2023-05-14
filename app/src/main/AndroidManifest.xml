@@ -10,33 +10,25 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+
         <activity
             android:name=".activity.user.TicketDetails"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".activity.user.BookedSuccessfully"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
             android:name=".activity.account.Register"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"></activity>
         <activity
-
             android:name=".activity.agent.AgentEventDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".activity.account.Login"
-            android:exported="true">
-        </activity>
-
+            android:exported="true"></activity>
         <activity
             android:name=".activity.agent.AgentEventsActivity"
             android:exported="false" />
@@ -69,8 +61,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
 
         <meta-data
             android:name="preloaded_fonts"
