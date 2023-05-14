@@ -12,16 +12,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
 import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.user.EventDetailsActivity;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyHolder> {
     private Context myContext ;
-    private ArrayList<EventModel> myData= new ArrayList<>();
+    private List<EventResponse> myData;
 
-    public EventAdapter(Context myContext, ArrayList<EventModel> myData) {
+    public EventAdapter(Context myContext, List<EventResponse> myData) {
         this.myContext = myContext;
         this.myData = myData;
     }
@@ -38,18 +40,19 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull EventAdapter.MyHolder myHolder, int position) {
         myHolder.image.setImageResource(R.drawable.image_event);
-        myHolder.title.setText(myData.get(myHolder.getAdapterPosition()).getTitle());
-        myHolder.address.setText(myData.get(myHolder.getAdapterPosition()).getAddress());
+        myHolder.title.setText(myData.get(myHolder.getAdapterPosition()).getEventName());
+        myHolder.address.setText(myData.get(myHolder.getAdapterPosition()).getLocation());
         myHolder.price.setText(String.valueOf(myData.get(myHolder.getAdapterPosition()).getPrice()));
 
         myHolder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(myContext, EventDetailsActivity.class);
-                intent.putExtra("title", myData.get(myHolder.getAdapterPosition()).getTitle());
-                intent.putExtra("address", myData.get(myHolder.getAdapterPosition()).getAddress());
+                intent.putExtra("title", myData.get(myHolder.getAdapterPosition()).getEventName());
+                intent.putExtra("country", myData.get(myHolder.getAdapterPosition()).getCountry());
+                intent.putExtra("city", myData.get(myHolder.getAdapterPosition()).getCity());
                 intent.putExtra("price", myData.get(myHolder.getAdapterPosition()).getPrice());
-                intent.putExtra("image", myData.get(myHolder.getAdapterPosition()).getImage());
+                intent.putExtra("image", myData.get(myHolder.getAdapterPosition()).getImageURL());
                 intent.putExtra("date", myData.get(myHolder.getAdapterPosition()).getDate());
                 intent.putExtra("time", myData.get(myHolder.getAdapterPosition()).getTime());
                 intent.putExtra("location", myData.get(myHolder.getAdapterPosition()).getLocation());

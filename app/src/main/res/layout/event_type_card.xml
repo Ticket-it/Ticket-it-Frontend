@@ -19,22 +19,22 @@
              />
 
 
-<!--    <TextView-->
-<!--        android:id="@+id/event_title"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignLeft="@+id/event_img"-->
-<!--        android:layout_alignTop="@+id/event_img"-->
-<!--        android:layout_alignRight="@+id/event_img"-->
-<!--        android:layout_alignBottom="@+id/event_img"-->
-<!--        android:layout_marginStart="1dp"-->
-<!--        android:layout_marginTop="1dp"-->
-<!--        android:layout_marginEnd="1dp"-->
-<!--        android:layout_marginBottom="1dp"-->
-<!--        android:fontFamily="@font/poppins_medium"-->
-<!--        android:gravity="center"-->
-<!--        android:text="Hello"-->
-<!--        android:textColor="#FFFF"-->
-<!--        android:textSize="20sp" />-->
+    <TextView
+        android:id="@+id/eventType_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/eventType_img"
+        android:layout_alignTop="@+id/eventType_img"
+        android:layout_alignRight="@+id/eventType_img"
+        android:layout_alignBottom="@+id/eventType_img"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="Hello"
+        android:textColor="#000"
+        android:textSize="20sp" />
     </RelativeLayout>
 
