@@ -37,6 +37,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/attendant_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:itemCount="5"
