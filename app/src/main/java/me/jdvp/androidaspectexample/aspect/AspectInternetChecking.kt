@@ -48,11 +48,12 @@ class AspectInternetChecking {
         /**
          * Call a function to check if there are internet available or not
          */
-        if (!isConnected(context)) {
-            Logger.logItem("System Internet checking -> Internet lost")
-            Toast.makeText(context, "No internet connection available", Toast.LENGTH_SHORT).show()
+        if(context != null){
+            if (!isConnected(context)) {
+                Logger.logItem("System Internet checking -> Internet lost")
+                Toast.makeText(context, "No internet connection available", Toast.LENGTH_SHORT).show()
+            }
         }
-
 
     }
 
