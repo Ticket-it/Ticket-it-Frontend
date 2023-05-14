@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.user.TicketDetails"
+    tools:context=".activity.agent.TicketDetailsAgent"
     android:orientation="vertical"
     android:layout_marginStart="24dp"
     android:layout_marginEnd="24dp">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -285,5 +284,35 @@
         android:fontFamily="@font/poppins_medium"
         android:textColor="#3D3D3D"
         />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/sign_in_btn"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_main_button"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Confirm Attendance"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@null"
+        android:fontFamily="@font/poppins_medium"
+        android:text="View History"
+        android:textAllCaps="false"
+        android:textSize="16sp" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
