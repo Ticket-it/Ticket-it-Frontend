@@ -7,7 +7,7 @@
     tools:context=".activity.agent.AgentHomeFragment">
 
     <LinearLayout
-        android:id="@+id/agent_info"
+        android:id="@+id/user_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#0373F3"
@@ -16,16 +16,14 @@
 
         <LinearLayout
             android:id="@+id/texts_cont"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/agent_name"
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/poppins_bold"
                 android:text="TextView"
                 android:textColor="#ffff"
@@ -37,24 +35,45 @@
                 android:id="@+id/welcome_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/poppins"
-                android:text="Manage the Attendance"
+                android:text="Manage the App"
                 android:textColor="#ffff"
                 android:textSize="14sp"
                 android:textStyle="normal" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView"
+
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/avatar_icon" />
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/cloud" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18°C"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_medium"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/event_types"
