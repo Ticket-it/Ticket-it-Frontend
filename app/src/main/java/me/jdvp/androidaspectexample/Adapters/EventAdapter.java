@@ -57,6 +57,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyHolder> {
                 intent.putExtra("time", myData.get(myHolder.getAdapterPosition()).getTime());
                 intent.putExtra("location", myData.get(myHolder.getAdapterPosition()).getLocation());
                 intent.putExtra("description", myData.get(myHolder.getAdapterPosition()).getDescription());
+                intent.putExtra("eventTypeId", myData.get(myHolder.getAdapterPosition()).getEventTypeId());
 
                 myContext.startActivity(intent);
             }

@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,21 +37,35 @@ public class EventsActivity extends AppCompatActivity {
     RecyclerView eventsRecyclerView;
     EventAdapter eventAdapter;
     List<EventResponse> events;
-    String eventTypeID, EventTypeName;
+    String eventTypeId, EventTypeName;
     ImageView back_btn;
     TextView pageTitle;
     Retrofit retrofit;
     EventService eventService;
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
         setContentView(R.layout.activity_events);
         Intent intent = getIntent();
-        eventTypeID = intent.getStringExtra("event_ID");
+
+        eventTypeId = intent.getStringExtra("event_ID");
         EventTypeName = intent.getStringExtra("eventTypeName");
 
+        if(eventTypeId!=null){
+            editor.putString("eventTypeId", eventTypeId);
+            editor.putString("eventTypeName", EventTypeName);
+            editor.apply();
+        }
+
+        String value = sharedPreferences.getString("eventTypeId", "0");
+        String eventTypeName = sharedPreferences.getString("eventTypeName", "");
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(ApiUrls.USER_URL)
@@ -56,7 +73,7 @@ public class EventsActivity extends AppCompatActivity {
                 .build();
         eventService = retrofit.create(EventService.class);
 
-        Call<List<EventResponse>> call = eventService.getEvents(eventTypeID);
+        Call<List<EventResponse>> call = eventService.getEvents(value);
         call.enqueue(new Callback<List<EventResponse>>() {
             @Override
             public void onResponse(@NonNull Call<List<EventResponse>> call, Response<List<EventResponse>> response) {
@@ -105,8 +122,13 @@ public class EventsActivity extends AppCompatActivity {
 
         back_btn = findViewById(R.id.back_arrow);
         pageTitle = findViewById(R.id.event_type);
-        pageTitle.setText(EventTypeName);
+        pageTitle.setText(eventTypeName);
         back_btn.setOnClickListener(view -> {
+            editor.remove("eventTypeId");
+            editor.remove("eventTypeName");
+
+            editor.apply();
+
             startActivity(new Intent(EventsActivity.this, HomeActivity.class));
         });
     }
