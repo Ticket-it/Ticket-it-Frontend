@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import me.jdvp.androidaspectexample.APIModel.Events.TicketsHistoryResponse;
+import me.jdvp.androidaspectexample.APIModel.events.TicketsHistoryResponse;
 import me.jdvp.androidaspectexample.R;
 
 public class EventHistoryAdapter extends RecyclerView.Adapter<EventHistoryAdapter.MyHolder> {

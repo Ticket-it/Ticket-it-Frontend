@@ -13,11 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
-import me.jdvp.androidaspectexample.APIModel.Events.EventTypeResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.user.EventsActivity;
 

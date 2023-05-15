@@ -1,12 +1,11 @@
 package me.jdvp.androidaspectexample.Interface;
 
-import java.io.Serializable;
 import java.util.List;
 
-import me.jdvp.androidaspectexample.APIModel.Events.BookEventResponse;
-import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
-import me.jdvp.androidaspectexample.APIModel.Events.EventTypeResponse;
-import me.jdvp.androidaspectexample.APIModel.Events.HistoryMainResponse;
+import me.jdvp.androidaspectexample.APIModel.events.BookEventResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
+import me.jdvp.androidaspectexample.APIModel.events.HistoryMainResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

@@ -1,17 +1,15 @@
 package me.jdvp.androidaspectexample.activity.user;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
-import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.R;
 
 public class TicketDetails extends AppCompatActivity {

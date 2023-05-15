@@ -1,4 +1,4 @@
-package me.jdvp.androidaspectexample.APIModel.Events;
+package me.jdvp.androidaspectexample.APIModel.events;
 
 public class HistoryMainResponse {
     private HistorySubResponse history;

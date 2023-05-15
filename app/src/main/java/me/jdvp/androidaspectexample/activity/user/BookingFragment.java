@@ -2,7 +2,6 @@ package me.jdvp.androidaspectexample.activity.user;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -13,10 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import java.util.ArrayList;
+
 import java.util.List;
-import me.jdvp.androidaspectexample.APIModel.Events.HistoryMainResponse;
-import me.jdvp.androidaspectexample.APIModel.Events.TicketsHistoryResponse;
+import me.jdvp.androidaspectexample.APIModel.events.HistoryMainResponse;
+import me.jdvp.androidaspectexample.APIModel.events.TicketsHistoryResponse;
 import me.jdvp.androidaspectexample.Adapters.EventHistoryAdapter;
 import me.jdvp.androidaspectexample.Interface.EventService;
 import me.jdvp.androidaspectexample.R;

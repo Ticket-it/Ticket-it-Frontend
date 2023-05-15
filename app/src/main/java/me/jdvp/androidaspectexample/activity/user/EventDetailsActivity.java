@@ -2,25 +2,20 @@ package me.jdvp.androidaspectexample.activity.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.List;
-
-import me.jdvp.androidaspectexample.APIModel.Events.BookEventResponse;
-import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
-import me.jdvp.androidaspectexample.Adapters.EventAdapter;
+import me.jdvp.androidaspectexample.APIModel.events.BookEventResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.Interface.EventService;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.config.ApiUrls;
@@ -58,7 +53,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventDate = findViewById(R.id.date_text);
         eventDescription = findViewById(R.id.event_description);
         eventPrice = findViewById(R.id.event_price);
-        buttonBook = findViewById(R.id.buttonBook);
+        buttonBook = findViewById(R.id.buttonViewAtt);
 
         title = intent.getStringExtra("title");
         price = intent.getDoubleExtra("price", 0.0);

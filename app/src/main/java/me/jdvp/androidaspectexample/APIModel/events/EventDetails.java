@@ -1,4 +1,6 @@
-package me.jdvp.androidaspectexample.APIModel.Events;
+package me.jdvp.androidaspectexample.APIModel.events;
+
+import java.io.Serializable;
 
 public class EventDetails {
     private int availableTickets;

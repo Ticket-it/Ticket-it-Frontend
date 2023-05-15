@@ -1,6 +1,4 @@
-package me.jdvp.androidaspectexample.APIModel.Events;
-
-import java.io.Serializable;
+package me.jdvp.androidaspectexample.APIModel.events;
 
 public class BookEventResponse{
     private String success;

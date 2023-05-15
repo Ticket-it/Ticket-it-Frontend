@@ -10,20 +10,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
-import me.jdvp.androidaspectexample.APIModel.Events.EventTypeResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.Adapters.EventAdapter;
-import me.jdvp.androidaspectexample.Adapters.EventTypeAdapter;
 import me.jdvp.androidaspectexample.Interface.EventService;
-import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.config.ApiUrls;
 import retrofit2.Call;

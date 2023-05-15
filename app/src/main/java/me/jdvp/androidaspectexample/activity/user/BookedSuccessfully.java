@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.R;
 
 public class BookedSuccessfully extends AppCompatActivity {

@@ -17,4 +17,10 @@ public class ApiUrls {
 
     public static final String  USER_URL = "http://"+IP_ADDRESS+USER_PORT+"api/users/";
 
+    //User Port
+    public static final String AGENT_PORT=":3002/";
+
+    public static final String AGENT_URL = "http://"+IP_ADDRESS+AGENT_PORT+"api/ticket-agent/";
+
+
 }

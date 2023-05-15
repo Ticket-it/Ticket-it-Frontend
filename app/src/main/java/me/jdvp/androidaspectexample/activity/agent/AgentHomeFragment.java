@@ -3,6 +3,7 @@ package me.jdvp.androidaspectexample.activity.agent;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,21 +12,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import java.util.List;
 
+import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
 import me.jdvp.androidaspectexample.Adapters.AgentEventTypeAdapter;
-import me.jdvp.androidaspectexample.Adapters.EventTypeAdapter;
-import me.jdvp.androidaspectexample.Models.EventModel;
-import me.jdvp.androidaspectexample.Models.EventTypeModel;
+import me.jdvp.androidaspectexample.Interface.EventService;
 import me.jdvp.androidaspectexample.R;
+import me.jdvp.androidaspectexample.config.ApiUrls;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class AgentHomeFragment extends Fragment {
 
     RecyclerView agentEventTypeRecyclerView;
     AgentEventTypeAdapter agentEventTypeAdapter;
-    ArrayList<EventTypeModel> eventTypes;
+    List<EventTypeResponse> eventTypes;
+    Retrofit retrofit;
+    EventService eventService;
 
     @SuppressLint("MissingInflatedId")
 
@@ -39,23 +48,61 @@ public class AgentHomeFragment extends Fragment {
         String agent_name = "Agent"; // fetched agent name
         agent_name_textView.setText("Hi, "+ agent_name);
 
-        ArrayList<EventModel> events = new ArrayList<>();
-        events.add(new EventModel("Amr Diab’s New Year", "Family Park, Fifth Settlement", "@drawable/event_img", 750, "Amr Diab is one of the most eminent Arabic pop stars in the Arabic world and a Guinness World Record Holder, Best Selling Middle Eastern Artist, 7 times winner of World Music Awards, 5 Platinum Record Awards & 6 African Music Awards.", "28/05/2023", "07:30 PM", "Cairo, Egypt"));
-        events.add(new EventModel("Amr Diab’s New Year", "Family Park, Fifth Settlement", "@drawable/event_img", 750, "Amr Diab is one of the most eminent Arabic pop stars in the Arabic world and a Guinness World Record Holder, Best Selling Middle Eastern Artist, 7 times winner of World Music Awards, 5 Platinum Record Awards & 6 African Music Awards.", "28/05/2023", "07:30 PM", "Cairo, Egypt"));
-        events.add(new EventModel("Amr Diab’s New Year", "Family Park, Fifth Settlement", "@drawable/event_img", 750, "Amr Diab is one of the most eminent Arabic pop stars in the Arabic world and a Guinness World Record Holder, Best Selling Middle Eastern Artist, 7 times winner of World Music Awards, 5 Platinum Record Awards & 6 African Music Awards.", "28/05/2023", "07:30 PM", "Cairo, Egypt"));
-        events.add(new EventModel("Amr Diab’s New Year", "Family Park, Fifth Settlement", "@drawable/event_img", 750, "Amr Diab is one of the most eminent Arabic pop stars in the Arabic world and a Guinness World Record Holder, Best Selling Middle Eastern Artist, 7 times winner of World Music Awards, 5 Platinum Record Awards & 6 African Music Awards.", "28/05/2023", "07:30 PM", "Cairo, Egypt"));
-        events.add(new EventModel("Amr Diab’s New Year", "Family Park, Fifth Settlement", "@drawable/event_img", 750, "Amr Diab is one of the most eminent Arabic pop stars in the Arabic world and a Guinness World Record Holder, Best Selling Middle Eastern Artist, 7 times winner of World Music Awards, 5 Platinum Record Awards & 6 African Music Awards.", "28/05/2023", "07:30 PM", "Cairo, Egypt"));
+        retrofit = new Retrofit.Builder()
+                .baseUrl(ApiUrls.USER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        eventService = retrofit.create(EventService.class);
 
-        eventTypes = new ArrayList<>();
-        eventTypes.add(new EventTypeModel("@drawable/event_img",events));
-        eventTypes.add(new EventTypeModel("@drawable/event_img",events));
-        eventTypes.add(new EventTypeModel("@drawable/event_img",events));
-        eventTypes.add(new EventTypeModel("@drawable/event_img",events));
+        Call<List<EventTypeResponse>> call = eventService.getEventTypes();
+        call.enqueue(new Callback<List<EventTypeResponse>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<EventTypeResponse>> call, Response<List<EventTypeResponse>> response) {
 
-        agentEventTypeRecyclerView = (RecyclerView) view.findViewById(R.id.agent_events_type_recyclerView);
-        agentEventTypeAdapter = new AgentEventTypeAdapter(getActivity(), eventTypes);
-        agentEventTypeRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
-        agentEventTypeRecyclerView.setAdapter(agentEventTypeAdapter);
+                /**
+                 * If status 200 is received
+                 */
+                if (response.isSuccessful()) {
+                    // Handle successful response here
+                    List<EventTypeResponse> responseData = response.body();
+                    assert responseData != null;
+
+                    if(!responseData.isEmpty()){
+                        eventTypes = responseData;
+                        agentEventTypeRecyclerView = (RecyclerView) view.findViewById(R.id.agent_events_type_recyclerView);
+                        agentEventTypeAdapter = new AgentEventTypeAdapter(getActivity(), eventTypes);
+                        agentEventTypeRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
+                        agentEventTypeRecyclerView.setAdapter(agentEventTypeAdapter);
+
+                    }
+                } else {
+
+                    /**
+                     * If status is > 200
+                     */
+                    if (response.errorBody() != null) {
+//                        try {
+//                            String errorResponse = response.errorBody().string();
+//                            ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
+//                            String errorMessage = error.getMessage();
+//                            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+                    }
+                }
+            }
+
+            /**
+             * If request failed
+             */
+            @Override
+            public void onFailure(Call<List<EventTypeResponse>> call, Throwable t) {
+                Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
 
         return view;
     }

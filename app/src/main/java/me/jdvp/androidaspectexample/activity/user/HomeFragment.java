@@ -16,13 +16,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import me.jdvp.androidaspectexample.APIModel.Events.EventTypeResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
 import me.jdvp.androidaspectexample.Adapters.EventTypeAdapter;
 import me.jdvp.androidaspectexample.Interface.EventService;
-import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.config.ApiUrls;
 import retrofit2.Call;

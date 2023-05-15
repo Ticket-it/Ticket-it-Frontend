@@ -11,12 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
-import me.jdvp.androidaspectexample.Models.EventModel;
+import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.user.EventDetailsActivity;
 
