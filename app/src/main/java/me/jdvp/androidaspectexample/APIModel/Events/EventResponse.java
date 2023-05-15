@@ -1,6 +1,8 @@
 package me.jdvp.androidaspectexample.APIModel.Events;
 
-public class EventResponse {
+import java.io.Serializable;
+
+public class EventResponse implements Serializable {
     private int availableTickets;
     private String city;
     private String country;

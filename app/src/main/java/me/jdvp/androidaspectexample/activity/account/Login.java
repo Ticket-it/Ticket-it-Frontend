@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity {
         sign_up_btn = findViewById(R.id.sign_up_tv);
         email_tv = findViewById(R.id.email_tv);
         password_tv = findViewById(R.id.password_tv);
-        sign_in_btn=findViewById(R.id.sign_in_btn);
+        sign_in_btn=findViewById(R.id.home_btn);
 
 
         /**
@@ -133,6 +133,10 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Logged in Successfully", Toast.LENGTH_LONG).show();
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("userId", responseData.getUserId());
+                        editor.putString("userEmail", responseData.getUserEmail());
+                        editor.putString("userPhone", responseData.getUserPhone());
+                        editor.putString("userName", responseData.getName());
+                        editor.apply();
 
                         /**
                          * Check the type of user

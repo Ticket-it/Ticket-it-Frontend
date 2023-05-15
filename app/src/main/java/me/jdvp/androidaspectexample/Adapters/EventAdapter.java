@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +59,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyHolder> {
                 intent.putExtra("location", myData.get(myHolder.getAdapterPosition()).getLocation());
                 intent.putExtra("description", myData.get(myHolder.getAdapterPosition()).getDescription());
                 intent.putExtra("eventTypeId", myData.get(myHolder.getAdapterPosition()).getEventTypeId());
+                intent.putExtra("eventID", myData.get(myHolder.getAdapterPosition()).getEventId());
+
+                intent.putExtra("eventObj", myData.get(myHolder.getAdapterPosition()));
+
+
 
                 myContext.startActivity(intent);
             }

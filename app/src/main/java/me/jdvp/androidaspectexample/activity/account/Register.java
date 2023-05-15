@@ -52,7 +52,7 @@ public class Register extends AppCompatActivity {
         email_tv = findViewById(R.id.email_tv);
         password_tv = findViewById(R.id.password_tv);
         confirm_password_tv = findViewById(R.id.confirm_password_tv);
-        sign_in_btn = findViewById(R.id.sign_in_btn);
+        sign_in_btn = findViewById(R.id.home_btn);
         sign_up_btn = findViewById(R.id.sign_up_tv);
 
         /**

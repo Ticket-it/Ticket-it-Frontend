@@ -5,6 +5,8 @@ public class LoginResponse {
     private String userId;
     private String type;
     private String name;
+    private String userEmail;
+    private String userPhone;
 
     public String getType() {
         return type;
@@ -22,13 +24,22 @@ public class LoginResponse {
         this.name = name;
     }
 
-    public LoginResponse(String message, String userId, String type, String name) {
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public LoginResponse(String message, String userId, String type, String name, String userEmail, String userPhone) {
         this.message = message;
         this.userId = userId;
         this.type = type;
         this.name = name;
+        this.userEmail = userEmail;
+        this.userPhone = userPhone;
     }
-
 
     public String getMessage() {
         return message;
