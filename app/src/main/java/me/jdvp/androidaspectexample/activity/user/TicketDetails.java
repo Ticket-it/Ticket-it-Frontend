@@ -48,11 +48,6 @@ public class TicketDetails extends AppCompatActivity {
 
         ticketID.setText(ticketNum);
         statusBtn.setText(status);
-        Log.d("status", status);
-        if (status.equals("pending")){
-            statusBtn.setBackgroundColor(ContextCompat.getColor(TicketDetails.this, R.color.orange));
-        }
-
 
         attName.setText(name);
         attEmail.setText(email);
@@ -64,14 +59,6 @@ public class TicketDetails extends AppCompatActivity {
         date_text.setText(eventResponse.getDate());
         time_text.setText(eventResponse.getTime());
         location_text.setText(eventResponse.getCity() + ", " + eventResponse.getCountry());
-
-
-
-
-
-
-
-
 
 
 

@@ -10,18 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import me.jdvp.androidaspectexample.APIModel.Events.EventResponse;
-import me.jdvp.androidaspectexample.Models.EventHistoryModel;
+import me.jdvp.androidaspectexample.APIModel.Events.TicketsHistoryResponse;
 import me.jdvp.androidaspectexample.R;
 
 public class EventHistoryAdapter extends RecyclerView.Adapter<EventHistoryAdapter.MyHolder> {
     private Context myContext ;
-    private List<EventHistoryModel> myData;
+    private List<TicketsHistoryResponse> myData;
 
-    public EventHistoryAdapter(Context myContext, ArrayList<EventHistoryModel> myData) {
+    public EventHistoryAdapter(Context myContext, List<TicketsHistoryResponse> myData) {
         this.myContext = myContext;
         this.myData = myData;
     }
@@ -38,9 +36,9 @@ public class EventHistoryAdapter extends RecyclerView.Adapter<EventHistoryAdapte
     @Override
     public void onBindViewHolder(@NonNull EventHistoryAdapter.MyHolder myHolder, int position) {
         myHolder.image.setImageResource(R.drawable.image_event);
-        myHolder.title.setText(myData.get(myHolder.getAdapterPosition()).getTitle());
-        myHolder.address.setText(myData.get(myHolder.getAdapterPosition()).getLocation());
-        myHolder.price.setText(String.valueOf(myData.get(myHolder.getAdapterPosition()).getPrice()));
+        myHolder.title.setText(myData.get(myHolder.getAdapterPosition()).getEventDetails().getEventName());
+        myHolder.address.setText(myData.get(myHolder.getAdapterPosition()).getEventDetails().getLocation());
+        myHolder.price.setText(String.valueOf(myData.get(myHolder.getAdapterPosition()).getEventDetails().getPrice()));
         myHolder.status.setText(myData.get(myHolder.getAdapterPosition()).getStatus());
     }
 

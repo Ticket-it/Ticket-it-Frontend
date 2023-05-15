@@ -1,6 +1,8 @@
 package me.jdvp.androidaspectexample.activity.user;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,15 +41,17 @@ public class HomeFragment extends Fragment {
     private EventService eventService;
     private Retrofit retrofit;
     private TextView user_tv;
-
+    SharedPreferences sharedPreferences;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        sharedPreferences = getContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
         user_tv=view.findViewById(R.id.user_name);
-        String name = getActivity().getIntent().getStringExtra("name"); // Replace "name" with the same key used in the sending activity
+        String name = sharedPreferences.getString("userName","Test");
         if (name != null) {
             user_tv.setText("Hi, "+ name);
 

@@ -98,6 +98,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         buttonBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Call<BookEventResponse> call = eventService.bookEvent(eventID, userID);
                 call.enqueue(new Callback<BookEventResponse>() {
                     @Override

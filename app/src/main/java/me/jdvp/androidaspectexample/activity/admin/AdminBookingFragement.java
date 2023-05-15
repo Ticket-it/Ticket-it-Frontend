@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import me.jdvp.androidaspectexample.Adapters.AdminBookingAdapter;
-import me.jdvp.androidaspectexample.Adapters.EventHistoryAdapter;
-import me.jdvp.androidaspectexample.Models.EventHistoryModel;
 import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
 

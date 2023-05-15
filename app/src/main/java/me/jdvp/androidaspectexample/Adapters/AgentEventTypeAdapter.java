@@ -61,7 +61,6 @@ public class AgentEventTypeAdapter extends RecyclerView.Adapter<AgentEventTypeAd
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             event_type_card = itemView.findViewById(R.id.card_view_id);
-            event_type_image = itemView.findViewById(R.id.eventType_img);
         }
     }
 }
