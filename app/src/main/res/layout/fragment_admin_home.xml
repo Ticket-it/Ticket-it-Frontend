@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -94,7 +94,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/admin_events_type_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:itemCount="4"
+        tools:listitem="@layout/event_type_card"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp" />
 
@@ -102,21 +105,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="24dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="Enter new type.."
+            android:layout_weight="1"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="14sp"
+            android:background="@drawable/button_border"
+            />
 
         <Button
             android:id="@+id/add_newType_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:background="@drawable/button_border"
-            android:text="Add new Type"
-            android:textAllCaps="false"
-            android:textColor="#8B8B8B" />
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
+            android:background="#0373F3"
+            android:text="+"
+            android:textSize="20sp"
+            android:textColor="#fff"
+             />
     </LinearLayout>
 
 
-    <!--    </LinearLayout>-->
-
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
