@@ -13,8 +13,6 @@ import me.jdvp.androidaspectexample.R;
 
 public class AgentHome extends AppCompatActivity {
     AgentHomeFragment agentHomeFragment = new AgentHomeFragment();
-    //AgentBookingFragment agentBookingFragment = new AgentBookingFragment();
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

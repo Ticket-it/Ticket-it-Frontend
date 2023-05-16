@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ import me.jdvp.androidaspectexample.R;
 
 public class TicketDetailsAgent extends AppCompatActivity {
     TextView event_title, event_address, event_price, date_text, time_text, location_text, attName, attPhone, attEmail, ticketID;
-    Button statusBtn;
+    Button statusBtn,confirm_attendance;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,8 @@ public class TicketDetailsAgent extends AppCompatActivity {
         setContentView(R.layout.activity_ticket_details_agent);
 
         statusBtn = findViewById(R.id.statusBtn);
+        confirm_attendance = findViewById(R.id.confirm_attendance);
+
         event_title = findViewById(R.id.event_title);
         event_address = findViewById(R.id.event_address);
         event_price = findViewById(R.id.event_price);
@@ -45,5 +48,11 @@ public class TicketDetailsAgent extends AppCompatActivity {
         time_text.setText(intent.getStringExtra("time"));
         location_text.setText(intent.getStringExtra("city") + ", " + intent.getStringExtra("country"));
 
+        confirm_attendance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 }
