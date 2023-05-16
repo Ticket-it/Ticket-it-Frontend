@@ -4,9 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
     tools:context=".activity.admin.AdminHomeFragment">
-
     <LinearLayout
         android:id="@+id/user_info"
         android:layout_width="match_parent"
@@ -41,10 +39,7 @@
                 android:textColor="#ffff"
                 android:textSize="14sp"
                 android:textStyle="normal" />
-
         </LinearLayout>
-
-
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -63,19 +58,14 @@
                 android:layout_gravity="center"
                 android:src="@drawable/cloud" />
             <TextView
+                android:id="@+id/weather_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="18°C"
                 android:textColor="#fff"
                 android:textSize="16sp"
-                android:fontFamily="@font/poppins_medium"
-
-                />
-
+                android:fontFamily="@font/poppins_medium" />
         </LinearLayout>
-
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/admin_event_types"

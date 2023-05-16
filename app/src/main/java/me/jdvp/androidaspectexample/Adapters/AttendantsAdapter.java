@@ -61,8 +61,6 @@ public class AttendantsAdapter extends RecyclerView.Adapter<AttendantsAdapter.My
                 intent.putExtra("status", myData.get(myHolder.getAdapterPosition()).getStatus());
                 intent.putExtra("name", myData.get(myHolder.getAdapterPosition()).getUserName());
                 intent.putExtra("userId", myData.get(myHolder.getAdapterPosition()).getUserId());
-
-                //intent.putExtra("eventObj", myData.get(myHolder.getAdapterPosition()));
                 myContext.startActivity(intent);
             }
         });

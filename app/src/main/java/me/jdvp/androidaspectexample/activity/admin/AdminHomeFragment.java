@@ -12,14 +12,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import me.jdvp.androidaspectexample.APIModel.weather.WeatherResponse;
 import me.jdvp.androidaspectexample.Adapters.AdminEventTypeAdapter;
 import me.jdvp.androidaspectexample.Adapters.EventTypeAdapter;
+import me.jdvp.androidaspectexample.Interface.WeatherApi;
 import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.Models.EventTypeModel;
 import me.jdvp.androidaspectexample.R;
+import me.jdvp.androidaspectexample.config.ApiUrls;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class AdminHomeFragment extends Fragment {
@@ -27,7 +36,7 @@ public class AdminHomeFragment extends Fragment {
     RecyclerView adminEventTypeRecyclerView;
     AdminEventTypeAdapter adminEventTypeAdapter;
     ArrayList<EventTypeModel> eventTypes;
-
+    TextView weatherTemp;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +52,38 @@ public class AdminHomeFragment extends Fragment {
          TextView admin_name_textView = view.findViewById(R.id.admin_name);
         String admin_name = "Admin"; // fetched admin name
         admin_name_textView.setText("Hi, "+ admin_name);
+        weatherTemp=view.findViewById(R.id.weather_id);
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(ApiUrls.WEATHER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WeatherApi weatherApi = retrofit2.create(WeatherApi.class);
+
+        Call<WeatherResponse> callWeather = weatherApi.getWeather("30.033333","31.233334", ApiUrls.API_KEY,"metric");
+        callWeather.enqueue(new Callback<WeatherResponse>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
+
+                if (response.isSuccessful()) {
+                    WeatherResponse weatherResponse = response.body();
+                    assert weatherResponse != null;
+                    weatherTemp.setText(weatherResponse.getList().get(0).getMain().getTemp()+"°C");
+                } else {
+                    Toast.makeText(getActivity(), "Cannot get the weather temperature", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WeatherResponse> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
 
 
         ArrayList<EventModel> events = new ArrayList<>();

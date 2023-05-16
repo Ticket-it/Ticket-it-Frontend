@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +22,10 @@ import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.error.ErrorResponse;
 import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
+import me.jdvp.androidaspectexample.APIModel.weather.WeatherResponse;
 import me.jdvp.androidaspectexample.Adapters.AgentEventTypeAdapter;
 import me.jdvp.androidaspectexample.Interface.EventService;
+import me.jdvp.androidaspectexample.Interface.WeatherApi;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.config.ApiUrls;
 import retrofit2.Call;
@@ -39,6 +42,7 @@ public class AgentHomeFragment extends Fragment {
     List<EventTypeResponse> eventTypes;
     Retrofit retrofit;
     EventService eventService;
+    TextView weatherTemp;
 
     @SuppressLint("MissingInflatedId")
 
@@ -47,10 +51,40 @@ public class AgentHomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_agent_home, container, false);
 
+        weatherTemp=view.findViewById(R.id.weather_id);
 
         TextView agent_name_textView = view.findViewById(R.id.agent_name);
         String agent_name = "Agent"; // fetched agent name
         agent_name_textView.setText("Hi, "+ agent_name);
+
+        Retrofit retrofit2 = new Retrofit.Builder()
+                .baseUrl(ApiUrls.WEATHER_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        WeatherApi weatherApi = retrofit2.create(WeatherApi.class);
+
+        Call<WeatherResponse> callWeather = weatherApi.getWeather("30.033333","31.233334", ApiUrls.API_KEY,"metric");
+        callWeather.enqueue(new Callback<WeatherResponse>() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
+
+                if (response.isSuccessful()) {
+                    WeatherResponse weatherResponse = response.body();
+                    assert weatherResponse != null;
+                    weatherTemp.setText(weatherResponse.getList().get(0).getMain().getTemp()+"°C");
+                } else {
+                    Toast.makeText(getActivity(), "Cannot get the weather temperature", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WeatherResponse> call, Throwable t) {
+                Toast.makeText(getActivity(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(ApiUrls.USER_URL)

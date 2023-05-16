@@ -102,6 +102,7 @@ public class TicketDetailsAgent extends AppCompatActivity {
                             assert responseData != null;
 
                             if(responseData.getMessage().equals("true")){
+                                Toast.makeText(TicketDetailsAgent.this, userName+" have attended successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent1 = new Intent(TicketDetailsAgent.this, EventAttendants.class);
                                 intent1.putExtra("eventId", eventId);
                                 startActivity(intent1);

@@ -12,9 +12,6 @@ public class EventModel implements Serializable {
     private String time;
     private String location; // Cairo, Egypt
 
-    public EventModel() {
-    }
-
     public EventModel(String title, String address, String image, int price, String description, String date, String time, String location) {
         this.title = title;
         this.address = address;

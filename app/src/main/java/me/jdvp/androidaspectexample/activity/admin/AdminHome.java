@@ -20,21 +20,7 @@ public class AdminHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, adminHomeFragment).commit();
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected( MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, adminHomeFragment).commit();
-                        return true ;
-                    case R.id.booking:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frag_cont, adminBookingFragement).commit();
-                        return true ;
-                }
-                return false;
-            }
-        });
+
     }
 }

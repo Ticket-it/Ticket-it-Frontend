@@ -5,7 +5,7 @@ public class ApiUrls {
     // public static final String IP_ADDRESS="192.168.100.19";
 
     // Abouraya
-    public static final String IP_ADDRESS="192.168.1.2";
+    public static final String IP_ADDRESS="192.168.1.3";
 
     // Login Port
     public static final String LOGIN_PORT=":3003/";
@@ -22,5 +22,7 @@ public class ApiUrls {
 
     public static final String AGENT_URL = "http://"+IP_ADDRESS+AGENT_PORT+"api/ticket-agent/";
 
+    public static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/";
 
+    public static final String API_KEY = "e10904f16c4332538809c497e421048c";
 }
