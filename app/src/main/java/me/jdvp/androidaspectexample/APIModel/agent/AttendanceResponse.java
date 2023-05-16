@@ -8,14 +8,25 @@ public class AttendanceResponse{
     private String status;
     private String ticketId;
     private String userName;
+    private String mobileNo;
+    private String email;
     private EventDetails eventDetails;
 
+    public String getMobileNo() {
+        return mobileNo;
+    }
 
-    public AttendanceResponse(String eventId, String status, String ticketId, String userName, EventDetails eventDetails) {
+    public String getEmail() {
+        return email;
+    }
+
+    public AttendanceResponse(String eventId, String status, String ticketId, String userName, String mobileNo, String email, EventDetails eventDetails) {
         this.eventId = eventId;
         this.status = status;
         this.ticketId = ticketId;
         this.userName = userName;
+        this.mobileNo = mobileNo;
+        this.email = email;
         this.eventDetails = eventDetails;
     }
 

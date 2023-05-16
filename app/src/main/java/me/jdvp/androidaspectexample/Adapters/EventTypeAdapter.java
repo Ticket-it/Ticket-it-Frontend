@@ -26,7 +26,6 @@ public class EventTypeAdapter extends RecyclerView.Adapter<EventTypeAdapter.MyHo
     public EventTypeAdapter(Context myContext, List<EventTypeResponse> myData) {
         this.myContext = myContext;
         this.myData = myData;
-        Log.d("pepsss", myData.get(0).getEventTypeId());
     }
 
     @NonNull

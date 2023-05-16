@@ -14,8 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.List;
 
+import me.jdvp.androidaspectexample.APIModel.error.ErrorResponse;
 import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.Adapters.EventAdapter;
 import me.jdvp.androidaspectexample.Interface.EventService;
@@ -94,14 +98,14 @@ public class EventsActivity extends AppCompatActivity {
                      * If status is > 200
                      */
                     if (response.errorBody() != null) {
-//                        try {
-//                            String errorResponse = response.errorBody().string();
-//                            ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
-//                            String errorMessage = error.getMessage();
-//                            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
+                        try {
+                            String errorResponse = response.errorBody().string();
+                            ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
+                            String errorMessage = error.getMessage();
+                            Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
