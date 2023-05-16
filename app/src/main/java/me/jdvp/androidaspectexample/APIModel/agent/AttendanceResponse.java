@@ -10,6 +10,7 @@ public class AttendanceResponse{
     private String userName;
     private String mobileNo;
     private String email;
+    private String userId;
     private EventDetails eventDetails;
 
     public String getMobileNo() {
@@ -20,7 +21,11 @@ public class AttendanceResponse{
         return email;
     }
 
-    public AttendanceResponse(String eventId, String status, String ticketId, String userName, String mobileNo, String email, EventDetails eventDetails) {
+    public String getUserId() {
+        return userId;
+    }
+
+    public AttendanceResponse(String eventId, String status, String ticketId, String userName, String mobileNo, String email, EventDetails eventDetails, String userId) {
         this.eventId = eventId;
         this.status = status;
         this.ticketId = ticketId;
@@ -28,6 +33,7 @@ public class AttendanceResponse{
         this.mobileNo = mobileNo;
         this.email = email;
         this.eventDetails = eventDetails;
+        this.userId = userId;
     }
 
     public String getEventId() {
