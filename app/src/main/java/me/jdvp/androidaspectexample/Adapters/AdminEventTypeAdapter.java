@@ -52,7 +52,7 @@ public class AdminEventTypeAdapter extends RecyclerView.Adapter<AdminEventTypeAd
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(myContext, AdminEventsActivity.class);
-                intent.putExtra("event_ID", myData.get(myHolder.getAdapterPosition()).getEventTypeId());
+                intent.putExtra("eventTypeId", myData.get(myHolder.getAdapterPosition()).getEventTypeId());
                 intent.putExtra("eventTypeName", myData.get(myHolder.getAdapterPosition()).getEventTypeName());
 
                 myContext.startActivity(intent);

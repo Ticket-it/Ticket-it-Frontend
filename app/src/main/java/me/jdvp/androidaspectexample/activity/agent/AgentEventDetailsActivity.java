@@ -1,5 +1,6 @@
 package me.jdvp.androidaspectexample.activity.agent;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -11,9 +12,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import me.jdvp.androidaspectexample.APIModel.agent.ConfirmationResponse;
+import me.jdvp.androidaspectexample.APIModel.error.ErrorResponse;
+import me.jdvp.androidaspectexample.Interface.AdminService;
 import me.jdvp.androidaspectexample.R;
+import me.jdvp.androidaspectexample.activity.admin.AdminEventsActivity;
+import me.jdvp.androidaspectexample.config.ApiUrls;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AgentEventDetailsActivity extends AppCompatActivity {
     ImageView go_back;
@@ -76,5 +91,7 @@ public class AgentEventDetailsActivity extends AppCompatActivity {
         go_back.setOnClickListener(view -> {
             startActivity(new Intent(AgentEventDetailsActivity.this, AgentEventsActivity.class));
         });
+
+
     }
 }

@@ -47,6 +47,8 @@ public class AdminEventsActivity extends AppCompatActivity {
     Retrofit retrofit;
     AdminService adminService;
 
+    Button addNewButton;
+
 
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
@@ -55,18 +57,24 @@ public class AdminEventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_events);
         Intent intent = getIntent();
-        eventTypeId =  intent.getStringExtra("event_ID");
+        eventTypeId =  intent.getStringExtra("eventTypeId");
         eventTypeName =  intent.getStringExtra("eventTypeName");
 
         pageTitle=findViewById(R.id.admin_event_title);
         back_btn = findViewById(R.id.admin_back_arrow);
         pageTitle.setText(eventTypeName);
+        addNewButton = findViewById(R.id.add_new_event);
 
-        back_btn.setOnClickListener(view -> {
-            startActivity(new Intent(AdminEventsActivity.this, AdminHome.class));
+        addNewButton.setOnClickListener(view -> {
+            Intent intent1=new Intent(AdminEventsActivity.this, AdminEventDetailsActivity.class);
+            intent1.putExtra("eventTypeId",eventTypeId);
+            startActivity(intent1);
         });
 
-
+        back_btn.setOnClickListener(view -> {
+//            startActivity(new Intent(AdminEventsActivity.this, AdminHome.class));
+            finish();
+        });
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(ApiUrls.USER_URL)

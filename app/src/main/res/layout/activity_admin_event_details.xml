@@ -20,7 +20,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/admin_back_arrow2"
+            android:id="@+id/back_arrow3"
             android:layout_width="28dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
@@ -48,7 +48,8 @@
             android:fontFamily="@font/poppins_medium"
             android:textColor="#414141"/>
 
-        <TextView
+        <EditText
+            android:id="@+id/current_number_of_tickets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="/250 ticket"
@@ -62,6 +63,7 @@
             android:layout_weight="1"/>
 
         <ImageView
+            android:id="@+id/delete_image"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:src="@drawable/delete_24px"/>
@@ -71,14 +73,15 @@
     <ImageView
         android:id="@+id/image_event_details"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="fitXY"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/image_event_details" />
 
     <LinearLayout
         android:id="@+id/user_info"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="25dp"
@@ -86,29 +89,28 @@
         android:paddingEnd="25dp"
         android:paddingBottom="6dp">
 
+
+
         <LinearLayout
             android:id="@+id/event_desc"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <EditText
                 android:id="@+id/event_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/poppins"
                 android:text="Amr Diab's New Year"
                 android:textColor="#3D3D3D"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/event_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:fontFamily="@font/poppins_light"
                 android:text="Family Park, Fifth Settlement"
                 android:textColor="#848484"
@@ -117,14 +119,18 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/price_cont"
+        <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:id="@+id/price_cont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
+            <EditText
                 android:id="@+id/event_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -170,7 +176,7 @@
                 android:layout_weight="2"
                 android:src="@drawable/calendar" />
 
-            <TextView
+            <EditText
                 android:id="@+id/date_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -196,7 +202,7 @@
                 android:layout_weight="2"
                 android:src="@drawable/clock" />
 
-            <TextView
+            <EditText
                 android:id="@+id/time_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -222,7 +228,7 @@
                 android:layout_weight="2"
                 android:src="@drawable/discovery" />
 
-            <TextView
+            <EditText
                 android:id="@+id/location_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -234,7 +240,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
+    <EditText
         android:id="@+id/event_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -255,7 +261,6 @@
         android:text="Save"
         android:textAllCaps="false"
         android:textColor="#FFFF"
-        android:textSize="16sp" />
-
-
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"/>
 </LinearLayout>

@@ -13,6 +13,7 @@ import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.APIModel.events.HistoryMainResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -20,6 +21,9 @@ import retrofit2.http.Path;
 public interface AdminService {
     @POST("event-type/add")
     Call<AddEventTypeResponse> addEventType(@Body AddEventTypeRequest request);
+
+    @DELETE("event-type/delete/{eventId}")
+    Call<ConfirmationResponse> deleteEvent(@Path("eventId") String eventId);
 
     @GET("events/{eventTypeId}")
     Call<List<EventResponse>> getEvents(@Path("eventTypeId") String eventTypeId);

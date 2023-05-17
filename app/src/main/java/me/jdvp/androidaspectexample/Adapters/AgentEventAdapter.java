@@ -15,6 +15,7 @@ import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.R;
+import me.jdvp.androidaspectexample.activity.admin.AdminEventsActivity;
 import me.jdvp.androidaspectexample.activity.agent.AgentEventDetailsActivity;
 
 public class AgentEventAdapter extends RecyclerView.Adapter<AgentEventAdapter.MyHolder> {
@@ -58,7 +59,6 @@ public class AgentEventAdapter extends RecyclerView.Adapter<AgentEventAdapter.My
                 intent.putExtra("eventTypeId", myData.get(myHolder.getAdapterPosition()).getEventTypeId());
                 intent.putExtra("eventID", myData.get(myHolder.getAdapterPosition()).getEventId());
                 intent.putExtra("eventObj", myData.get(myHolder.getAdapterPosition()));
-
                 myContext.startActivity(intent);
             }
         });
