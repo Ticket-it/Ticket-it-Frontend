@@ -25,7 +25,7 @@
             app:srcCompat="?attr/actionModeCloseDrawable" />
 
         <TextView
-            android:id="@+id/admin_event_type"
+            android:id="@+id/admin_event_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"

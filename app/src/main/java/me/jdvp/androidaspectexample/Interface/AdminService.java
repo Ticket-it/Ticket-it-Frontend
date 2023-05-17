@@ -10,6 +10,7 @@ import me.jdvp.androidaspectexample.APIModel.agent.AttendanceResponse;
 import me.jdvp.androidaspectexample.APIModel.agent.ConfirmationRequest;
 import me.jdvp.androidaspectexample.APIModel.agent.ConfirmationResponse;
 import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
+import me.jdvp.androidaspectexample.APIModel.events.HistoryMainResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -28,5 +29,11 @@ public interface AdminService {
 
     @GET("tickets-approve-all/{eventId}")
     Call <List<ApproveAllResponse>> approveTickets(@Path("eventId") String eventId);
+
+    @GET("tickets-user/{userId}")
+    Call<HistoryMainResponse> getHistory(@Path("userId") String userId);
+
+    @POST("tickets/{ticketId}")
+    Call<ConfirmationResponse> confirmBooking(@Path("ticketId") String ticketId, @Body ConfirmationRequest request);
 }
 

@@ -14,15 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
         <activity
-            android:name=".activity.admin.AdminBookingActivity"
+            android:name=".activity.admin.AdminUserHistoryActivity"
             android:exported="false">
         </activity>
-
+        <activity
+            android:name=".activity.admin.AdminBookingActivity"
+            android:exported="false"></activity>
         <activity
             android:name=".activity.agent.AgentUserHistoryActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".activity.agent.EventAttendants"
             android:exported="false" />

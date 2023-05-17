@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.admin.TicketDetailsAdmin"
+    tools:context=".activity.agent.TicketDetailsAgent"
     android:orientation="vertical"
     android:layout_marginStart="24dp"
     android:layout_marginEnd="24dp">
@@ -47,16 +47,16 @@
 
 
     <Button
+        android:id="@+id/statusBtn"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:text="Confirmed"
-        android:textSize="9sp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/chip"
-        android:textColor="#fff"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:paddingHorizontal="20dp"
         android:paddingVertical="0dp"
-        />
+        android:text="Confirmed"
+        android:textColor="#fff"
+        android:textSize="9sp" />
 
     <LinearLayout
         android:id="@+id/user_info"
@@ -222,14 +222,15 @@
         android:fontFamily="@font/poppins"
         android:textSize="11sp"
         />
+
     <TextView
-        android:layout_marginStart="8dp"
+        android:id="@+id/attName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mostafa Hesham"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/poppins_medium"
-        android:textColor="#3D3D3D"
-        />
+        android:text="Mostafa Hesham"
+        android:textColor="#3D3D3D" />
 
     <TextView
         android:layout_marginStart="8dp"
@@ -245,6 +246,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0111-2222-3344"
+        android:id="@+id/attPhone"
         android:fontFamily="@font/poppins_medium"
         android:textColor="#3D3D3D"
         />
@@ -263,6 +265,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="mostafa@email.com"
+        android:id="@+id/attEmail"
         android:fontFamily="@font/poppins_medium"
         android:textColor="#3D3D3D"
         />
@@ -280,10 +283,12 @@
         android:layout_marginStart="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/ticketID"
         android:text="408d9085-c3f0-4c31-8070-1ae9134ab8de"
         android:fontFamily="@font/poppins_medium"
         android:textColor="#3D3D3D"
         />
+
 
     <Space
         android:layout_width="wrap_content"
@@ -291,7 +296,7 @@
         android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/sign_in_btn"
+        android:id="@+id/confirm_attendance"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="30dp"
@@ -303,6 +308,7 @@
         android:textSize="16sp" />
 
     <Button
+        android:id="@+id/agent_viewHistory_btn"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@null"
@@ -310,7 +316,6 @@
         android:text="View History"
         android:textAllCaps="false"
         android:textSize="16sp" />
-
     <Space
         android:layout_width="wrap_content"
         android:layout_height="16dp"/>

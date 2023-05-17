@@ -19,6 +19,7 @@ import me.jdvp.androidaspectexample.APIModel.admin.ApproveAllResponse;
 import me.jdvp.androidaspectexample.APIModel.agent.AttendanceResponse;
 import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
+import me.jdvp.androidaspectexample.activity.admin.TicketDetailsAdmin;
 import me.jdvp.androidaspectexample.activity.agent.AgentEventDetailsActivity;
 import me.jdvp.androidaspectexample.activity.agent.TicketDetailsAgent;
 
@@ -50,7 +51,7 @@ public class AdminBookingAdapter extends RecyclerView.Adapter<AdminBookingAdapte
         myHolder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(myContext, TicketDetailsAgent.class);
+                Intent intent = new Intent(myContext, TicketDetailsAdmin.class);
                 intent.putExtra("title", myData.get(myHolder.getAdapterPosition()).getEventDetails().getEventName());
                 intent.putExtra("country", myData.get(myHolder.getAdapterPosition()).getEventDetails().getCountry());
                 intent.putExtra("city", myData.get(myHolder.getAdapterPosition()).getEventDetails().getCity());
