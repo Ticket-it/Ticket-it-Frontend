@@ -5,7 +5,7 @@ public class ApiUrls {
     // public static final String IP_ADDRESS="192.168.100.19";
 
     // Abouraya
-    public static final String IP_ADDRESS="192.168.1.3";
+    public static final String IP_ADDRESS="192.168.1.2";
 
     // Login Port
     public static final String LOGIN_PORT=":3003/";
@@ -16,6 +16,13 @@ public class ApiUrls {
     public static final String USER_PORT=":3000/";
 
     public static final String  USER_URL = "http://"+IP_ADDRESS+USER_PORT+"api/users/";
+
+    //Admin Port
+    //User Port
+    public static final String ADMIN_PORT=":3001/";
+
+    public static final String  ADMIN_URL = "http://"+IP_ADDRESS+ADMIN_PORT+"api/admin/";
+
 
     //Agent Port
     public static final String AGENT_PORT=":3002/";

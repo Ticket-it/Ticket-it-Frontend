@@ -82,6 +82,7 @@ public class AgentEventAdapter extends RecyclerView.Adapter<AgentEventAdapter.My
 
         ImageView image;
 
+
         public MyHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.event_title);

@@ -100,16 +100,16 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/enter_new_type"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:hint="Enter new type.."
             android:layout_weight="1"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/poppins_light"
+            android:hint="Enter new type.."
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:fontFamily="@font/poppins_light"
-            android:textSize="14sp"
-            android:background="@drawable/button_border"
-            />
+            android:textSize="14sp" />
 
         <Button
             android:id="@+id/add_newType_button"

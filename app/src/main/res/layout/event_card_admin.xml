@@ -85,14 +85,14 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/add_newEvent_button"
+        android:id="@+id/view_booking_btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/button_border"
+        android:fontFamily="@font/poppins"
         android:text="View Booking"
         android:textAllCaps="false"
-        android:fontFamily="@font/poppins"
         android:textColor="#8B8B8B" />
 
 
