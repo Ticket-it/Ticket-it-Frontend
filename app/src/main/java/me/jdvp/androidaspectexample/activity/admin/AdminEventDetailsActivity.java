@@ -16,9 +16,14 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_event_details);
+
+        Intent intent=getIntent();
+        String evenId=intent.getStringExtra("eventID");
         go_back = findViewById(R.id.admin_back_arrow2);
         go_back.setOnClickListener(view -> {
-            startActivity(new Intent(AdminEventDetailsActivity.this, AdminEventsActivity.class));
+            Intent intent1=new Intent(AdminEventDetailsActivity.this, AdminEventsActivity.class);
+            intent1.putExtra("eventID",evenId);
+            startActivity(intent1);
         });
     }
 }
