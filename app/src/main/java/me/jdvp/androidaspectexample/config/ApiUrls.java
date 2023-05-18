@@ -8,7 +8,7 @@ public class ApiUrls {
     // public static final String IP_ADDRESS="192.168.1.3";
 
    // Etch
-    public static final String IP_ADDRESS="192.168.1.3";
+    public static final String IP_ADDRESS="192.168.1.2";
 
     // Login Port
     public static final String LOGIN_PORT=":3003/";

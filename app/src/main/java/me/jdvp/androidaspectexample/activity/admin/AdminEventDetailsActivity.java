@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -109,24 +110,20 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         saveButton.setOnClickListener(view -> {
             var call = adminService.editEvent(eventID, new EventDetails(
                     0,
-                    city,
-                    country,
-                    date,
-                    description,
+                    Arrays.asList(eventLocation.getText().toString().split(",")).get(0),
+                    Arrays.asList(eventLocation.getText().toString().split(",")).get(1),
+                    (String) eventDate.getText(),
+                    (String) eventDescription.getText(),
                     eventID,
-                    title,
+                    (String) eventTitle.getText(),
                     image,
-                    location,
+                    (String) eventAddress.getText(),
                     price,
-                    time,
+                    (String )eventTime.getText(),
                     Objects.requireNonNullElse(eventTypeID, "null value")
             ));
-        });
 
-        delete_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Call<DeleteResponse> call = adminService.deleteEvent(eventID);
+            try {
                 call.enqueue(new Callback<DeleteResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<DeleteResponse> call, Response<DeleteResponse> response) {
@@ -152,9 +149,9 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                             if (response.errorBody() != null) {
                                 try {
                                     String errorResponse = response.errorBody().string();
-                                    ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
-                                    String errorMessage = error.getMessage();
-                                    Toast.makeText(AdminEventDetailsActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+//                                    ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
+//                                    String errorMessage = error.getMessage();
+                                    Toast.makeText(AdminEventDetailsActivity.this, errorResponse, Toast.LENGTH_LONG).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -171,6 +168,63 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                     }
                 });
 
+            } catch (Error error){
+//                  Log.e(error.toString());
+            }
+        });
+
+        delete_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              try {
+                  Call<DeleteResponse> call = adminService.deleteEvent(eventID);
+                  call.enqueue(new Callback<DeleteResponse>() {
+                      @Override
+                      public void onResponse(@NonNull Call<DeleteResponse> call, Response<DeleteResponse> response) {
+
+                          /**
+                           * If status 200 is received
+                           */
+                          if (response.isSuccessful()) {
+                              // Handle successful response here
+                              DeleteResponse responseData = response.body();
+                              assert responseData != null;
+
+                              Toast.makeText(AdminEventDetailsActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                              Intent intent1=new Intent(AdminEventDetailsActivity.this,AdminEventsActivity.class);
+                              Toast.makeText(AdminEventDetailsActivity.this, eventTypeID, Toast.LENGTH_SHORT).show();
+                              intent1.putExtra("eventTypeId",eventTypeID);
+                              startActivity(intent1);
+                          } else {
+
+                              /**
+                               * If status is > 200
+                               */
+                              if (response.errorBody() != null) {
+                                  try {
+                                      String errorResponse = response.errorBody().string();
+//                                    ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
+//                                    String errorMessage = error.getMessage();
+                                      Toast.makeText(AdminEventDetailsActivity.this, errorResponse, Toast.LENGTH_LONG).show();
+                                  } catch (IOException e) {
+                                      e.printStackTrace();
+                                  }
+                              }
+                          }
+                      }
+
+                      /**
+                       * If request failed
+                       */
+                      @Override
+                      public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                          Toast.makeText(AdminEventDetailsActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                      }
+                  });
+
+              } catch (Error error){
+//                  Log.e(error.toString());
+              }
             }
         });
     }

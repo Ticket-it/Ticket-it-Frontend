@@ -16,6 +16,7 @@
             android:layout_height="120dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
+            android:background="#0373F3"
              />
 
 
@@ -34,7 +35,7 @@
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:text="Hello"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="20sp" />
     </RelativeLayout>
 
