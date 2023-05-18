@@ -2,6 +2,8 @@ package me.jdvp.androidaspectexample.activity.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,12 +20,17 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
+import me.jdvp.androidaspectexample.APIModel.admin.AddEventTypeRequest;
+import me.jdvp.androidaspectexample.APIModel.admin.AddEventTypeResponse;
 import me.jdvp.androidaspectexample.APIModel.admin.DeleteResponse;
 import me.jdvp.androidaspectexample.APIModel.agent.ConfirmationResponse;
 import me.jdvp.androidaspectexample.APIModel.error.ErrorResponse;
 import me.jdvp.androidaspectexample.APIModel.events.EventDetails;
+import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
+import me.jdvp.androidaspectexample.Adapters.AdminEventTypeAdapter;
 import me.jdvp.androidaspectexample.Interface.AdminService;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.agent.AgentEventDetailsActivity;
@@ -55,7 +62,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(ApiUrls.USER_URL)
+                .baseUrl(ApiUrls.ADMIN_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         adminService = retrofit.create(AdminService.class);
@@ -82,7 +89,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         country = intent.getStringExtra("country");
         city = intent.getStringExtra("city");
         eventID = intent.getStringExtra("eventID");
-        eventTypeID = intent.getStringExtra("eventTypeID");
+        eventTypeID = intent.getStringExtra("eventTypeId");
 
 
         eventTitle.setText(title);
@@ -99,7 +106,6 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         });
 
         Log.e("eventId", Objects.requireNonNullElse(eventID, "null value"));
-
         saveButton.setOnClickListener(view -> {
             var call = adminService.editEvent(eventID, new EventDetails(
                     0,
@@ -117,34 +123,55 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
             ));
         });
 
-        delete_image.setOnClickListener(view -> {
+        delete_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Call<DeleteResponse> call = adminService.deleteEvent(eventID);
+                call.enqueue(new Callback<DeleteResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<DeleteResponse> call, Response<DeleteResponse> response) {
 
-            var call = adminService.deleteEvent(eventID);
-            call.enqueue(new Callback<DeleteResponse>() {
-                @Override
-                public void onResponse(@NonNull Call<DeleteResponse> call, Response<DeleteResponse> response) {
-                    if (response.isSuccessful()) {
-                        var responseData = response.body();
-                        assert responseData != null;
-                        Toast.makeText(AdminEventDetailsActivity.this, responseData.getMessage(), Toast.LENGTH_LONG).show();
-                    } else {
-                        if (response.errorBody() != null) {
-                            try {
-                                String errorResponse = response.errorBody().string();
-//                                ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
-//                                String errorMessage = error.getMessage();
-                                Toast.makeText(getApplicationContext(), errorResponse, Toast.LENGTH_LONG).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                        /**
+                         * If status 200 is received
+                         */
+                        if (response.isSuccessful()) {
+                            // Handle successful response here
+                            DeleteResponse responseData = response.body();
+                            assert responseData != null;
+
+                            Toast.makeText(AdminEventDetailsActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent1=new Intent(AdminEventDetailsActivity.this,AdminEventsActivity.class);
+                            Toast.makeText(AdminEventDetailsActivity.this, eventTypeID, Toast.LENGTH_SHORT).show();
+                            intent1.putExtra("eventTypeId",eventTypeID);
+                            startActivity(intent1);
+                        } else {
+
+                            /**
+                             * If status is > 200
+                             */
+                            if (response.errorBody() != null) {
+                                try {
+                                    String errorResponse = response.errorBody().string();
+                                    ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
+                                    String errorMessage = error.getMessage();
+                                    Toast.makeText(AdminEventDetailsActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
-                }
-                @Override
-                public void onFailure(Call<DeleteResponse> call, Throwable t) {
-                    Toast.makeText(AdminEventDetailsActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });
+
+                    /**
+                     * If request failed
+                     */
+                    @Override
+                    public void onFailure(Call<DeleteResponse> call, Throwable t) {
+                        Toast.makeText(AdminEventDetailsActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
         });
     }
 }

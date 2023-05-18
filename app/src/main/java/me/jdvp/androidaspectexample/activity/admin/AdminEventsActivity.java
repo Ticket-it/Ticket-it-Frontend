@@ -63,6 +63,8 @@ public class AdminEventsActivity extends AppCompatActivity {
         pageTitle.setText(eventTypeName);
         addNewButton = findViewById(R.id.add_new_event);
 
+        Toast.makeText(this, eventTypeId, Toast.LENGTH_SHORT).show();
+
         addNewButton.setOnClickListener(view -> {
             Intent intent1=new Intent(AdminEventsActivity.this, AdminEventDetailsActivity.class);
             intent1.putExtra("eventTypeId",eventTypeId);

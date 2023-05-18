@@ -14,7 +14,7 @@ public class EventResponse implements Serializable {
     private String location;
     private double price;
     private String time;
-    private String eventTypeId;
+    private String type;
 
     public EventResponse(int availableTickets, String city, String country, String date, String description, String eventId, String eventName, String imageURL, String location, double price, String time, String eventTypeId) {
         this.availableTickets = availableTickets;
@@ -28,7 +28,7 @@ public class EventResponse implements Serializable {
         this.location = location;
         this.price = price;
         this.time = time;
-        this.eventTypeId = eventTypeId;
+        this.type = eventTypeId;
     }
 
     public int getAvailableTickets() {
@@ -120,10 +120,10 @@ public class EventResponse implements Serializable {
     }
 
     public String getEventTypeId() {
-        return eventTypeId;
+        return type;
     }
 
     public void setEventTypeId(String eventTypeId) {
-        this.eventTypeId = eventTypeId;
+        this.type = eventTypeId;
     }
 }

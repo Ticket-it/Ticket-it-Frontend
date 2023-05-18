@@ -25,7 +25,7 @@ public interface AdminService {
     @POST("event-type/add")
     Call<AddEventTypeResponse> addEventType(@Body AddEventTypeRequest request);
 
-    @DELETE("event/delete/{eventId}")
+    @GET("event/delete/{eventId}")
     Call<DeleteResponse> deleteEvent(@Path("eventId") String eventId);
 
     @POST("event/edit/{eventId}")
