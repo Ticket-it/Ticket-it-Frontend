@@ -49,8 +49,6 @@ public class AdminEventsActivity extends AppCompatActivity {
 
     Button addNewButton;
 
-
-
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +70,6 @@ public class AdminEventsActivity extends AppCompatActivity {
         });
 
         back_btn.setOnClickListener(view -> {
-//            startActivity(new Intent(AdminEventsActivity.this, AdminHome.class));
             finish();
         });
 

@@ -20,8 +20,10 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.Objects;
 
+import me.jdvp.androidaspectexample.APIModel.admin.DeleteResponse;
 import me.jdvp.androidaspectexample.APIModel.agent.ConfirmationResponse;
 import me.jdvp.androidaspectexample.APIModel.error.ErrorResponse;
+import me.jdvp.androidaspectexample.APIModel.events.EventDetails;
 import me.jdvp.androidaspectexample.Interface.AdminService;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.agent.AgentEventDetailsActivity;
@@ -37,11 +39,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AdminEventDetailsActivity extends AppCompatActivity {
     ImageView go_back, delete_image;
     TextView eventTitle, eventAddress, eventPrice, eventLocation, eventTime, eventDate, eventDescription;
-    String eventID, title, image, location, date, time, description, country, city, eventId;
+    String eventID, title, image, location, date, time, description, country, city, eventTypeID;
     Double price;
     SharedPreferences sharedPreferences;
     Retrofit retrofit;
     AdminService adminService;
+
+    Button saveButton;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         eventDescription = findViewById(R.id.event_description);
         eventPrice = findViewById(R.id.event_price);
         delete_image = findViewById(R.id.delete_image);
+        saveButton = findViewById(R.id.save_button);
 
         title = intent.getStringExtra("title");
         price = intent.getDoubleExtra("price", 0.0);
@@ -77,6 +82,8 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         country = intent.getStringExtra("country");
         city = intent.getStringExtra("city");
         eventID = intent.getStringExtra("eventID");
+        eventTypeID = intent.getStringExtra("eventTypeID");
+
 
         eventTitle.setText(title);
         eventAddress.setText(location);
@@ -91,14 +98,31 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
             finish();
         });
 
-        Log.e("eventId", Objects.requireNonNullElse(eventId, "null value"));
+        Log.e("eventId", Objects.requireNonNullElse(eventID, "null value"));
+
+        saveButton.setOnClickListener(view -> {
+            var call = adminService.editEvent(eventID, new EventDetails(
+                    0,
+                    city,
+                    country,
+                    date,
+                    description,
+                    eventID,
+                    title,
+                    image,
+                    location,
+                    price,
+                    time,
+                    Objects.requireNonNullElse(eventTypeID, "null value")
+            ));
+        });
 
         delete_image.setOnClickListener(view -> {
 
-            var call = adminService.deleteEvent(eventId);
-            call.enqueue(new Callback<ConfirmationResponse>() {
+            var call = adminService.deleteEvent(eventID);
+            call.enqueue(new Callback<DeleteResponse>() {
                 @Override
-                public void onResponse(@NonNull Call<ConfirmationResponse> call, Response<ConfirmationResponse> response) {
+                public void onResponse(@NonNull Call<DeleteResponse> call, Response<DeleteResponse> response) {
                     if (response.isSuccessful()) {
                         var responseData = response.body();
                         assert responseData != null;
@@ -107,9 +131,9 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                         if (response.errorBody() != null) {
                             try {
                                 String errorResponse = response.errorBody().string();
-                                ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
-                                String errorMessage = error.getMessage();
-                                Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
+//                                ErrorResponse error = new Gson().fromJson(errorResponse, ErrorResponse.class);
+//                                String errorMessage = error.getMessage();
+                                Toast.makeText(getApplicationContext(), errorResponse, Toast.LENGTH_LONG).show();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -117,7 +141,7 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
                     }
                 }
                 @Override
-                public void onFailure(Call<ConfirmationResponse> call, Throwable t) {
+                public void onFailure(Call<DeleteResponse> call, Throwable t) {
                     Toast.makeText(AdminEventDetailsActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
