@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TicketDetailsAdmin extends AppCompatActivity {
     TextView event_title, event_address, event_price, date_text, time_text, location_text, attName, attPhone, attEmail, ticketID;
     Button statusBtn,confirm_attendance, viewHistory;
-    String userId, ticketId, eventId, userName;
+    String eventTypeId,eventTypeName,image,userId, ticketId, eventId, userName;
     AdminService adminService;
     Retrofit retrofit;
+    ImageView back_button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class TicketDetailsAdmin extends AppCompatActivity {
         attEmail = findViewById(R.id.attEmail);
         ticketID = findViewById(R.id.ticketID);
         viewHistory = findViewById(R.id.agent_viewHistory_btn);
+        back_button=findViewById(R.id.back_button);
 
         Intent intent = getIntent();
         ticketID.setText(intent.getStringExtra("ticketId"));
@@ -72,7 +75,10 @@ public class TicketDetailsAdmin extends AppCompatActivity {
         userId = intent.getStringExtra("userId");
         ticketId = intent.getStringExtra("ticketId");
         eventId = intent.getStringExtra("eventID");
+        image = intent.getStringExtra("event_img");
+        eventTypeId=intent.getStringExtra("eventTypeId");
         userName = intent.getStringExtra("name");
+        eventTypeName=intent.getStringExtra("eventTypeName");
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(ApiUrls.ADMIN_URL)
@@ -101,6 +107,9 @@ public class TicketDetailsAdmin extends AppCompatActivity {
                                 Toast.makeText(TicketDetailsAdmin.this, userName+" have been approved successfully", Toast.LENGTH_SHORT).show();
                                 Intent intent1 = new Intent(TicketDetailsAdmin.this, AdminBookingActivity.class);
                                 intent1.putExtra("eventId", eventId);
+                                intent1.putExtra("eventTypeId", eventTypeId);
+                                intent1.putExtra("eventTypeName", eventTypeName);
+
                                 startActivity(intent1);
                                 finish();
                             }
@@ -135,13 +144,25 @@ public class TicketDetailsAdmin extends AppCompatActivity {
             }
         });
 
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(TicketDetailsAdmin.this, AdminBookingActivity.class);
+                intent1.putExtra("eventId", eventId);
+                intent1.putExtra("eventTypeId", eventTypeId);
+                intent1.putExtra("eventTypeName", eventTypeName);
+
+                startActivity(intent1);
+                finish();
+
+            }
+        });
 
         viewHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(TicketDetailsAdmin.this, AdminUserHistoryActivity.class);
-                intent1.putExtra("userId", userId);
-                intent1.putExtra("userName", userName);
+                intent1.putExtra("eventID", eventId);
                 startActivity(intent1);
 
             }

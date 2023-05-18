@@ -1,5 +1,6 @@
 package me.jdvp.androidaspectexample.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -26,11 +27,13 @@ import me.jdvp.androidaspectexample.activity.agent.TicketDetailsAgent;
 public class AdminBookingAdapter extends RecyclerView.Adapter<AdminBookingAdapter.MyHolder> {
 
     private Context myContext ;
-    private ArrayList<AttendanceResponse> myData= new ArrayList<>();
+    private ArrayList<AttendanceResponse> myData;
+    String eventTypeName;
 
-    public AdminBookingAdapter(Context myContext, ArrayList<AttendanceResponse> myData) {
+    public AdminBookingAdapter(Context myContext, ArrayList<AttendanceResponse> myData, String eventTypeName) {
         this.myContext = myContext;
         this.myData = myData;
+        this.eventTypeName=eventTypeName;
     }
 
     @NonNull
@@ -66,7 +69,12 @@ public class AdminBookingAdapter extends RecyclerView.Adapter<AdminBookingAdapte
                 intent.putExtra("status", myData.get(myHolder.getAdapterPosition()).getStatus());
                 intent.putExtra("name", myData.get(myHolder.getAdapterPosition()).getUserName());
                 intent.putExtra("userId", myData.get(myHolder.getAdapterPosition()).getUserId());
+                intent.putExtra("eventTypeId", myData.get(myHolder.getAdapterPosition()).getEventDetails().getEventTypeId());
+                intent.putExtra("eventTypeName", eventTypeName);
+
                 myContext.startActivity(intent);
+                ((Activity) myContext).finish();
+
             }
         });
     }

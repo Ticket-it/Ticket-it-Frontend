@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -28,11 +30,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EventAttendants extends AppCompatActivity {
-    String eventID;
+    String eventID,eventTypeId;
+    ImageView back_arrow2;
     RecyclerView attendantRecyclerView;
     AttendantsAdapter attendantsAdapter;
     ArrayList<AttendanceResponse> attendants = new ArrayList<>();
     Retrofit retrofit;
+    int num_tickets;
     AgentService agentService;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
@@ -41,6 +45,23 @@ public class EventAttendants extends AppCompatActivity {
         setContentView(R.layout.activity_event_attendants);
         Intent intent = getIntent();
         eventID = intent.getStringExtra("eventId");
+        eventTypeId = intent.getStringExtra("eventTypeId");
+
+
+        num_tickets= intent.getIntExtra("num_tickets",0);
+        back_arrow2=findViewById(R.id.back_arrow2);
+
+
+        back_arrow2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(EventAttendants.this, AgentEventsActivity.class);
+                intent1.putExtra("eventId", eventID);
+                intent1.putExtra("eventTypeId", eventTypeId);
+                startActivity(intent1);
+                finish();
+            }
+        });
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(ApiUrls.AGENT_URL)
@@ -90,4 +111,5 @@ public class EventAttendants extends AppCompatActivity {
             }
         });
     }
+
 }

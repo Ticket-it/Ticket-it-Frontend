@@ -63,12 +63,13 @@ public class AdminEventsActivity extends AppCompatActivity {
         pageTitle.setText(eventTypeName);
         addNewButton = findViewById(R.id.add_new_event);
 
-        Toast.makeText(this, eventTypeId, Toast.LENGTH_SHORT).show();
 
         addNewButton.setOnClickListener(view -> {
             Intent intent1=new Intent(AdminEventsActivity.this, AdminEventDetailsActivity.class);
             intent1.putExtra("eventTypeId",eventTypeId);
+            intent1.putExtra("eventTypeName",eventTypeName);
             startActivity(intent1);
+            finish();
         });
 
         back_btn.setOnClickListener(view -> {
@@ -97,7 +98,7 @@ public class AdminEventsActivity extends AppCompatActivity {
                     if(!responseData.isEmpty()){
                         events = responseData;
                         adminEventsRecyclerView = findViewById(R.id.admin_events_recycler_view);
-                        adminEventAdapter = new AdminEventAdapter(AdminEventsActivity.this, events);
+                        adminEventAdapter = new AdminEventAdapter(AdminEventsActivity.this, events,eventTypeName);
                         adminEventsRecyclerView.setLayoutManager(new GridLayoutManager(AdminEventsActivity.this, 1));
                         adminEventsRecyclerView.setAdapter(adminEventAdapter);
                     }
@@ -129,3 +130,4 @@ public class AdminEventsActivity extends AppCompatActivity {
         });
     }
 }
+

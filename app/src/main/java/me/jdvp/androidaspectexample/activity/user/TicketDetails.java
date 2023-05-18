@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
@@ -17,6 +19,7 @@ public class TicketDetails extends AppCompatActivity {
     EventResponse eventResponse;
     TextView event_title, event_address, event_price, date_text, time_text, location_text, attName, attPhone, attEmail, ticketID;
     Button statusBtn;
+    ImageView back_button;
     SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class TicketDetails extends AppCompatActivity {
         attPhone = findViewById(R.id.attPhone);
         attEmail = findViewById(R.id.attEmail);
         ticketID = findViewById(R.id.ticketID);
+        back_button=findViewById(R.id.back_button);
 
         Intent intent = getIntent();
         eventResponse = (EventResponse) intent.getSerializableExtra("eventObj");
@@ -58,6 +62,13 @@ public class TicketDetails extends AppCompatActivity {
         time_text.setText(eventResponse.getTime());
         location_text.setText(eventResponse.getCity() + ", " + eventResponse.getCountry());
 
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(TicketDetails.this, HomeActivity.class);
+                startActivity(intent1);
+            }
+        });
 
 
     }

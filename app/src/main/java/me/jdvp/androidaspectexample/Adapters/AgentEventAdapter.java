@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
@@ -38,7 +40,7 @@ public class AgentEventAdapter extends RecyclerView.Adapter<AgentEventAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull AgentEventAdapter.MyHolder myHolder, int position) {
-        myHolder.image.setImageResource(R.drawable.image_event);
+        Picasso.get().load(myData.get(myHolder.getAdapterPosition()).getImageURL()).into(myHolder.image);
         myHolder.title.setText(myData.get(myHolder.getAdapterPosition()).getEventName());
         myHolder.address.setText(myData.get(myHolder.getAdapterPosition()).getLocation());
         myHolder.price.setText(String.valueOf(myData.get(myHolder.getAdapterPosition()).getPrice()));
@@ -48,6 +50,7 @@ public class AgentEventAdapter extends RecyclerView.Adapter<AgentEventAdapter.My
             public void onClick(View v) {
                 Intent intent = new Intent(myContext, AgentEventDetailsActivity.class);
                 intent.putExtra("title", myData.get(myHolder.getAdapterPosition()).getEventName());
+                intent.putExtra("num_tickets", myData.get(myHolder.getAdapterPosition()).getAvailableTickets());
                 intent.putExtra("country", myData.get(myHolder.getAdapterPosition()).getCountry());
                 intent.putExtra("city", myData.get(myHolder.getAdapterPosition()).getCity());
                 intent.putExtra("price", myData.get(myHolder.getAdapterPosition()).getPrice());

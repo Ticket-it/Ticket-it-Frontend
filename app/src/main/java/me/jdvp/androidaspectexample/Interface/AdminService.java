@@ -7,6 +7,7 @@ import me.jdvp.androidaspectexample.APIModel.admin.AddEventTypeRequest;
 import me.jdvp.androidaspectexample.APIModel.admin.AddEventTypeResponse;
 import me.jdvp.androidaspectexample.APIModel.admin.ApproveAllResponse;
 import me.jdvp.androidaspectexample.APIModel.admin.DeleteResponse;
+import me.jdvp.androidaspectexample.APIModel.admin.EditEventResponse;
 import me.jdvp.androidaspectexample.APIModel.agent.AttendanceResponse;
 import me.jdvp.androidaspectexample.APIModel.agent.ConfirmationRequest;
 import me.jdvp.androidaspectexample.APIModel.agent.ConfirmationResponse;
@@ -15,9 +16,7 @@ import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
 import me.jdvp.androidaspectexample.APIModel.events.HistoryMainResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.DELETE;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -29,7 +28,10 @@ public interface AdminService {
     Call<DeleteResponse> deleteEvent(@Path("eventId") String eventId);
 
     @POST("event/edit/{eventId}")
-    Call editEvent(@Path("eventId") String eventId, @Body EventDetails eventDetails);
+    Call<EditEventResponse> editEvent(@Path("eventId") String eventId, @Body EventDetails eventDetails);
+
+    @POST("event/add")
+    Call<EditEventResponse> addEvent(@Body EventDetails eventDetails);
 
     @GET("events/{eventTypeId}")
     Call<List<EventResponse>> getEvents(@Path("eventTypeId") String eventTypeId);

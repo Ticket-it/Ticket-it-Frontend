@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.events.EventResponse;
@@ -37,7 +39,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull EventAdapter.MyHolder myHolder, int position) {
-        myHolder.image.setImageResource(R.drawable.image_event);
+        Picasso.get().load(myData.get(myHolder.getAdapterPosition()).getImageURL()).into(myHolder.image);
+
         myHolder.title.setText(myData.get(myHolder.getAdapterPosition()).getEventName());
         myHolder.address.setText(myData.get(myHolder.getAdapterPosition()).getLocation());
         myHolder.price.setText(String.valueOf(myData.get(myHolder.getAdapterPosition()).getPrice()));

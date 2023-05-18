@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.events.TicketsHistoryResponse;
@@ -35,7 +37,7 @@ public class EventHistoryAdapter extends RecyclerView.Adapter<EventHistoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull EventHistoryAdapter.MyHolder myHolder, int position) {
-        myHolder.image.setImageResource(R.drawable.image_event);
+        Picasso.get().load(myData.get(myHolder.getAdapterPosition()).getEventDetails().getImageURL()).into(myHolder.image);
         myHolder.title.setText(myData.get(myHolder.getAdapterPosition()).getEventDetails().getEventName());
         myHolder.address.setText(myData.get(myHolder.getAdapterPosition()).getEventDetails().getLocation());
         myHolder.price.setText(String.valueOf(myData.get(myHolder.getAdapterPosition()).getEventDetails().getPrice()));

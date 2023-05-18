@@ -14,7 +14,7 @@ public class EventDetails {
     private String location;
     private double price;
     private String time;
-    private String eventTypeId;
+    private String type;
 
     public int getAvailableTickets() {
         return availableTickets;
@@ -61,7 +61,7 @@ public class EventDetails {
     }
 
     public String getEventTypeId() {
-        return eventTypeId;
+        return type;
     }
 
     public EventDetails(int availableTickets, String city, String country, String date, String description, String eventId, String eventName, String imageURL, String location, double price, String time, String eventTypeId) {
@@ -76,6 +76,20 @@ public class EventDetails {
         this.location = location;
         this.price = price;
         this.time = time;
-        this.eventTypeId = eventTypeId;
+        this.type = eventTypeId;
+    }
+
+    public EventDetails(int availableTickets, String city, String country, String date, String description, String eventName, String imageURL, String location, double price, String time, String eventTypeId) {
+        this.availableTickets = availableTickets;
+        this.city = city;
+        this.country = country;
+        this.date = date;
+        this.description = description;
+        this.eventName = eventName;
+        this.imageURL = imageURL;
+        this.location = location;
+        this.price = price;
+        this.time = time;
+        this.type = eventTypeId;
     }
 }

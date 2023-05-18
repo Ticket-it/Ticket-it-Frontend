@@ -49,6 +49,7 @@ public class AttendantsAdapter extends RecyclerView.Adapter<AttendantsAdapter.My
                 Intent intent = new Intent(myContext, TicketDetailsAgent.class);
                 intent.putExtra("title", myData.get(myHolder.getAdapterPosition()).getEventDetails().getEventName());
                 intent.putExtra("country", myData.get(myHolder.getAdapterPosition()).getEventDetails().getCountry());
+                intent.putExtra("event_img", myData.get(myHolder.getAdapterPosition()).getEventDetails().getImageURL());
                 intent.putExtra("city", myData.get(myHolder.getAdapterPosition()).getEventDetails().getCity());
                 intent.putExtra("price", String.valueOf(myData.get(myHolder.getAdapterPosition()).getEventDetails().getPrice()));
                 intent.putExtra("date", myData.get(myHolder.getAdapterPosition()).getEventDetails().getDate());

@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -39,13 +40,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class AdminBookingFragement extends Fragment {
-    String eventID;
+    String eventID,eventTypeId,eventTypeName;
     RecyclerView attendantRecyclerView;
     AdminBookingAdapter attendantsAdapter;
-    ArrayList<AttendanceResponse> attendants = new ArrayList<>();
     Retrofit retrofit, retrofit2;
     AdminService adminService;
     Button accept_all_button;
+    ImageView back_button;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +55,9 @@ public class AdminBookingFragement extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_booking, container, false);
         Intent intent = getActivity().getIntent();
         eventID = intent.getStringExtra("eventId");
+        eventTypeId = intent.getStringExtra("eventTypeId");
+        eventTypeName=intent.getStringExtra("eventTypeName");
+        back_button=view.findViewById(R.id.back_button);
         accept_all_button = view.findViewById(R.id.accept_all_button);
 
         retrofit = new Retrofit.Builder()
@@ -75,7 +79,7 @@ public class AdminBookingFragement extends Fragment {
                     ArrayList <AttendanceResponse> responseData = response.body();
                     assert responseData != null;
                     attendantRecyclerView = view.findViewById(R.id.admin_booking_recycler_view);
-                    attendantsAdapter = new AdminBookingAdapter(getActivity(), responseData);
+                    attendantsAdapter = new AdminBookingAdapter(getActivity(), responseData,eventTypeName);
                     attendantRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 1));
                     attendantRecyclerView.setAdapter(attendantsAdapter);
                 } else {
@@ -104,9 +108,6 @@ public class AdminBookingFragement extends Fragment {
                 Toast.makeText(getContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-
-
 
         retrofit2 = new Retrofit.Builder()
                 .baseUrl(ApiUrls.ADMIN_URL)
@@ -165,7 +166,16 @@ public class AdminBookingFragement extends Fragment {
             }
         });
 
-
+        back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(getActivity(), AdminEventsActivity.class);
+                intent1.putExtra("eventTypeId", eventTypeId);
+                intent1.putExtra("eventTypeName", eventTypeName);
+                startActivity(intent1);
+                getActivity().finish();
+            }
+        });
         return view;
     }
 }

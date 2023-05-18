@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -31,7 +32,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EventDetailsActivity extends AppCompatActivity {
-    ImageView go_back;
+    ImageView go_back, event_img;
     Button buttonBook;
     TextView eventTitle, eventAddress, eventPrice, eventLocation, eventTime, eventDate, eventDescription;
     String eventID, title, image, location, date, time, description, country, city, eventId;
@@ -57,9 +58,10 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventTime = findViewById(R.id.time_text);
         eventDate = findViewById(R.id.date_text);
         eventDescription = findViewById(R.id.event_description);
+
         eventPrice = findViewById(R.id.event_price);
         buttonBook = findViewById(R.id.buttonViewAtt);
-
+        event_img = findViewById(R.id.image_event_details);
         title = intent.getStringExtra("title");
         price = intent.getDoubleExtra("price", 0.0);
         image = intent.getStringExtra("image");
@@ -72,6 +74,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventID = intent.getStringExtra("eventID");
 
 
+        Picasso.get().load(image).into(event_img);
 
         eventTitle.setText(title);
         eventAddress.setText(location);

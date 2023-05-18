@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -33,10 +34,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AgentEventDetailsActivity extends AppCompatActivity {
     ImageView go_back;
     Button buttonViewAtt;
-    TextView eventTitle, eventAddress, eventPrice, eventLocation, eventTime, eventDate, eventDescription;
+    TextView num_tickets_tv,eventTitle, eventAddress, eventPrice, eventLocation, eventTime, eventDate, eventDescription;
     String eventID, title, image, location, date, time, description, country, city, eventId;
     Double price;
+    int num_tickets;
     SharedPreferences sharedPreferences;
+    ImageView event_img;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class AgentEventDetailsActivity extends AppCompatActivity {
         eventDescription = findViewById(R.id.event_description);
         eventPrice = findViewById(R.id.event_price);
         buttonViewAtt = findViewById(R.id.buttonViewAtt);
+        num_tickets_tv=findViewById(R.id.num_tickets);
 
         title = intent.getStringExtra("title");
         price = intent.getDoubleExtra("price", 0.0);
@@ -66,9 +70,12 @@ public class AgentEventDetailsActivity extends AppCompatActivity {
         country = intent.getStringExtra("country");
         city = intent.getStringExtra("city");
         eventID = intent.getStringExtra("eventID");
+        num_tickets= intent.getIntExtra("num_tickets",0);
 
 
-
+        event_img = findViewById(R.id.image_event_details);
+        Picasso.get().load(image).into(event_img);
+        num_tickets_tv.setText(String.valueOf(num_tickets)+" Tickets");
         eventTitle.setText(title);
         eventAddress.setText(location);
         eventLocation.setText(city + ", " + country);
@@ -82,6 +89,8 @@ public class AgentEventDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 = new Intent(AgentEventDetailsActivity.this, EventAttendants.class);
                 intent1.putExtra("eventId", eventID);
+                intent1.putExtra("event_img", image);
+
                 startActivity(intent1);
 
             }

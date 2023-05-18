@@ -40,22 +40,25 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:inputType="number"
+            android:id="@+id/num_tickets"
+            android:layout_width="55dp"
             android:layout_height="wrap_content"
-            android:text="234"
+            android:hint="Num of tickets"
+            android:layout_marginLeft="20dp"
             android:textSize="12sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="#414141"/>
 
-        <EditText
-            android:id="@+id/current_number_of_tickets"
-            android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="90dp"
             android:layout_height="wrap_content"
-            android:text="/250 ticket"
-            android:textSize="12sp"
-            android:fontFamily="@font/poppins"
-            android:textColor="#9E9E9E"/>
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Num of tickets"
+            android:text="Tickets"
+            android:textColor="#414141"
+            android:textSize="12sp" />
 
         <Space
             android:layout_width="0dp"
@@ -98,11 +101,13 @@
             android:orientation="vertical">
 
             <EditText
+
                 android:id="@+id/event_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
                 android:text="Amr Diab's New Year"
+                android:hint="Enter Event Name"
                 android:textColor="#3D3D3D"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -113,6 +118,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_light"
                 android:text="Family Park, Fifth Settlement"
+                android:hint="Enter Event Location"
+
                 android:textColor="#848484"
                 android:textSize="13sp"
                 android:textStyle="normal" />
@@ -184,6 +191,7 @@
                 android:fontFamily="@font/montserrat"
                 android:text="28/05/2023"
                 android:textColor="#414141"
+                android:hint="Enter Date"
                 android:textSize="12sp" />
         </LinearLayout>
 
@@ -209,6 +217,7 @@
                 android:layout_weight="3"
                 android:fontFamily="@font/montserrat"
                 android:text="07:30 PM"
+                android:hint="Enter Time"
                 android:textColor="#414141"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -235,6 +244,7 @@
                 android:layout_weight="3"
                 android:fontFamily="@font/montserrat"
                 android:text="Cairo, Egypt"
+                android:hint="City, Cairo"
                 android:textColor="#414141"
                 android:textSize="12sp" />
         </LinearLayout>
@@ -244,11 +254,27 @@
         android:id="@+id/event_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/poppins_light"
         android:text="Amr Diab is one of the most eminent Arabic pop stars in the Arabic world and a Guinness World Record Holder, Best Selling Middle Eastern Artist, 7 times winner of World Music Awards, 5 Platinum Record Awards &amp; 6 African Music Awards."
         android:textColor="#848484"
+        android:hint="Enter Description"
         android:textSize="13sp" />
+
+    <EditText
+        android:id="@+id/event_image_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/poppins_light"
+        android:textColor="#848484"
+        android:hint="Enter image URL"
+        android:textSize="13sp" />
+
 
     <Button
         android:id="@+id/save_button"
