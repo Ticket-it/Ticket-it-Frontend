@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,15 +9,22 @@
         android:id="@+id/card_view_id"
         android:orientation="vertical">
 
-        <ImageView
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#000"
+        />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
             android:id="@+id/eventType_img"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_marginBottom="10dp"
             android:scaleType="centerCrop"
-            android:background="#0373F3"
-             />
-
+            android:background="#000"
+            android:src="@drawable/type"
+            android:alpha="0.7"
+        />
 
     <TextView
         android:id="@+id/eventType_title"
@@ -32,10 +38,10 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:fontFamily="@font/poppins_medium"
+        android:fontFamily="@font/poppins_bold"
         android:gravity="center"
         android:text="Hello"
         android:textColor="#fff"
-        android:textSize="20sp" />
+        android:textSize="24sp" />
     </RelativeLayout>
 

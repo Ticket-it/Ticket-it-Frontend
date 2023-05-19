@@ -53,8 +53,9 @@
     <ImageView
         android:id="@+id/image_event_details"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:scaleType="fitXY"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:layout_weight="1"
         app:srcCompat="@drawable/image_event_details" />
 
     <LinearLayout

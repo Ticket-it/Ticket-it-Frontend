@@ -38,7 +38,7 @@ public class EventsActivity extends AppCompatActivity {
     List<EventResponse> events;
     String eventTypeId, EventTypeName;
     ImageView back_btn;
-    TextView pageTitle;
+    TextView pageTitle, numTickets;
     Retrofit retrofit;
     EventService eventService;
     SharedPreferences sharedPreferences;

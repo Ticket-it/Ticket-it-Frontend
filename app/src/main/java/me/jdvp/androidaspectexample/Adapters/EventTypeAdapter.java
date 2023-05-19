@@ -13,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
@@ -39,7 +41,6 @@ public class EventTypeAdapter extends RecyclerView.Adapter<EventTypeAdapter.MyHo
 
     @Override
     public void onBindViewHolder(@NonNull EventTypeAdapter.MyHolder myHolder, int position) {
-        myHolder.event_type_image.setImageResource(R.drawable.mybutton);
         myHolder.event_type_title.setText(myData.get(myHolder.getAdapterPosition()).getEventTypeName());
         myHolder.event_type_card.setOnClickListener(new View.OnClickListener() {
             @Override

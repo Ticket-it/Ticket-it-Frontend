@@ -60,6 +60,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyHolder> {
                 intent.putExtra("description", myData.get(myHolder.getAdapterPosition()).getDescription());
                 intent.putExtra("eventTypeId", myData.get(myHolder.getAdapterPosition()).getEventTypeId());
                 intent.putExtra("eventID", myData.get(myHolder.getAdapterPosition()).getEventId());
+                intent.putExtra("num_tickets", myData.get(myHolder.getAdapterPosition()).getAvailableTickets());
 
                 intent.putExtra("eventObj", myData.get(myHolder.getAdapterPosition()));
 

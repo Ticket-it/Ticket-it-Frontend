@@ -34,9 +34,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class EventDetailsActivity extends AppCompatActivity {
     ImageView go_back, event_img;
     Button buttonBook;
-    TextView eventTitle, eventAddress, eventPrice, eventLocation, eventTime, eventDate, eventDescription;
+    TextView num_tickets_tv,eventTitle, eventAddress, eventPrice, eventLocation, eventTime, eventDate, eventDescription;
     String eventID, title, image, location, date, time, description, country, city, eventId;
     Double price;
+    int num_tickets;
     Retrofit retrofit;
     EventService eventService;
     SharedPreferences sharedPreferences;
@@ -58,6 +59,7 @@ public class EventDetailsActivity extends AppCompatActivity {
         eventTime = findViewById(R.id.time_text);
         eventDate = findViewById(R.id.date_text);
         eventDescription = findViewById(R.id.event_description);
+        num_tickets_tv=findViewById(R.id.num_tickets);
 
         eventPrice = findViewById(R.id.event_price);
         buttonBook = findViewById(R.id.buttonViewAtt);
@@ -72,10 +74,11 @@ public class EventDetailsActivity extends AppCompatActivity {
         country = intent.getStringExtra("country");
         city = intent.getStringExtra("city");
         eventID = intent.getStringExtra("eventID");
-
+        num_tickets= intent.getIntExtra("num_tickets",0);
 
         Picasso.get().load(image).into(event_img);
 
+        num_tickets_tv.setText(String.valueOf(num_tickets)+" Tickets");
         eventTitle.setText(title);
         eventAddress.setText(location);
         eventLocation.setText(city + ", " + country);
