@@ -77,22 +77,4 @@ class AspectLogging {
         Logger.logItem("System Logging -> Email: $email is trying to Log in")
     }
 
-    /**
-     * This is triggered when sign up function is called, which is in page register
-     */
-    @Pointcut("execution(void *signUp(..))")
-    fun onClicksignupPointcut() {
-
-    }
-
-    /**
-     * This is the advice code
-     */
-    @Before("onClicksignupPointcut()")
-    fun captureNewUserDetails(joinPoint: JoinPoint) {
-        val emailEditText = (joinPoint.target as Register).findViewById<EditText>(R.id.email_tv)
-        val email = emailEditText.text.toString()
-        Logger.logItem("System Logging -> Email: $email is trying to sign up")
-    }
-
 }
