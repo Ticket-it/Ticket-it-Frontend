@@ -99,3 +99,4 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyHolder> {
         }
     }
 }
+

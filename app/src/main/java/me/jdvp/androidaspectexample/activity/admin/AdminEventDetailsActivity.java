@@ -117,6 +117,13 @@ public class AdminEventDetailsActivity extends AppCompatActivity {
         event_image_url.setText(image);
         num_tickets_tv.setText(String.valueOf(num_tickets));
 
+        if(eventID == null){
+            delete_image.setVisibility(View.INVISIBLE);
+        }
+        else{
+            delete_image.setVisibility(View.VISIBLE);
+        }
+
         go_back = findViewById(R.id.back_arrow3);
         go_back.setOnClickListener(view -> {
             finish();

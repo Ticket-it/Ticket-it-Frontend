@@ -163,6 +163,9 @@ public class TicketDetailsAdmin extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent1 = new Intent(TicketDetailsAdmin.this, AdminUserHistoryActivity.class);
                 intent1.putExtra("eventID", eventId);
+                intent1.putExtra("userId", userId);
+                intent1.putExtra("userName", userName);
+
                 startActivity(intent1);
 
             }
