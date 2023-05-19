@@ -34,8 +34,6 @@ import me.jdvp.androidaspectexample.Adapters.EventTypeAdapter;
 import me.jdvp.androidaspectexample.Interface.AdminService;
 import me.jdvp.androidaspectexample.Interface.EventService;
 import me.jdvp.androidaspectexample.Interface.WeatherApi;
-import me.jdvp.androidaspectexample.Models.EventModel;
-import me.jdvp.androidaspectexample.Models.EventTypeModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.account.Register;
 import me.jdvp.androidaspectexample.config.ApiUrls;

@@ -26,7 +26,6 @@ import me.jdvp.androidaspectexample.Adapters.AdminEventAdapter;
 import me.jdvp.androidaspectexample.Adapters.EventAdapter;
 import me.jdvp.androidaspectexample.Interface.AdminService;
 import me.jdvp.androidaspectexample.Interface.EventService;
-import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.user.EventsActivity;
 import me.jdvp.androidaspectexample.config.ApiUrls;

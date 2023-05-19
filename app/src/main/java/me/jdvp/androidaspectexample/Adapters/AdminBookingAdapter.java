@@ -18,7 +18,6 @@ import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.admin.ApproveAllResponse;
 import me.jdvp.androidaspectexample.APIModel.agent.AttendanceResponse;
-import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.admin.TicketDetailsAdmin;
 import me.jdvp.androidaspectexample.activity.agent.AgentEventDetailsActivity;

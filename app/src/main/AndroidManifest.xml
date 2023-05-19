@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".activity.admin.AdminBookingActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".activity.agent.AgentUserHistoryActivity"
             android:exported="false" />

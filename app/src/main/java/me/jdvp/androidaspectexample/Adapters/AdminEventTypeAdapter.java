@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.jdvp.androidaspectexample.APIModel.events.EventTypeResponse;
-import me.jdvp.androidaspectexample.Models.EventTypeModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.activity.admin.AdminEventsActivity;
 import me.jdvp.androidaspectexample.activity.user.EventsActivity;

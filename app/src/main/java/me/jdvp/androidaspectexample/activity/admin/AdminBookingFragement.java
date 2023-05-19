@@ -29,7 +29,6 @@ import me.jdvp.androidaspectexample.APIModel.error.ErrorResponse;
 import me.jdvp.androidaspectexample.Adapters.AdminBookingAdapter;
 import me.jdvp.androidaspectexample.Adapters.AttendantsAdapter;
 import me.jdvp.androidaspectexample.Interface.AdminService;
-import me.jdvp.androidaspectexample.Models.EventModel;
 import me.jdvp.androidaspectexample.R;
 import me.jdvp.androidaspectexample.config.ApiUrls;
 import retrofit2.Call;
